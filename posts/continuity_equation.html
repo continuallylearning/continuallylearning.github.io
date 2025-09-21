@@ -32,6 +32,7 @@
       <h1>Flux, Flow, and the Continuity Equation</h1>
       <!-- TODO: Set time correctly-->
       <!-- TODO: Spellcheck-->
+      <!-- TODO: Make it possible that types for each thing are in one place and I can just reference them rather than type each time -->
       <p><time datetime="2025-09-20">September 20, 2025</time></p>
 
       <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differenatial form as follows:</p>
@@ -49,13 +50,19 @@
             <li>$x : \mathbb{R}^d$ represents position in space. Say the units are meters $m$.</li>
             <li>$t : \mathbb{R}$ represents point in time. Say the units are seconds $s$.</li>
             <li>$\rho : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R} $ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$.</li>
-        </ul>
+          </ul>
         </li>
+        <li>$\textbf{j} = \rho\textbf{v}$ is the flux of $q$, where flux represents total the amount of $q$ per unit time ($s$) per unit surface area. Say the units are $\frac{q}{sm^2}$
+          <ul>
+            <li>$\textbf{v}(x,t) : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}^d $ is the flow (or velocity field), a vector field that represents the velocity of the quantity at some point in space ($x$) and time ($t$). Velocity is a ratio of change in position over change in time, so say the units are $\frac{m}{s}$</li>
+            <li>Let's confirm the units of flux ($\frac{q}{sm^2}$) agrees with the units we get when we multiply the density of q $\rho$ with the flow $\textbf{v}$. Since $\rho$ has units $\frac{q}{m^3}$ and $\textbf{v}$ has units $\frac{m}{s}$ then:
+              
+              $$\rho \textbf{v} : (\frac{q}{m^3})(\frac{m}{s}) = \frac{q}{sm^2}$$
 
-        <li>
-          $\textbf{j} = \rho\textbf{v}$ is the flux of $q$, where flux represents the amount of $q$ per unit time ($s$) passing through a unit surface area ($m^2$). Say the units are $\frac{q}{sm^2}$
+            </li>
+            <li>It's acceptable to multiply $\rho$ and $\textbf{v}$ because $v$ is a vector and $\rho$ is a scalar, so the resulting flux vector $\textbf{j}$ points in the same direction as the flow, but its magnitude is scaled by the density $\rho$.</li>
+          </ul>
         </li>
-
         <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $\textbf{f}(x_1,...,x_n) : \mathbb{R}^d \rightarrow \mathbb{R}^d=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$ to a scalar field $(\nabla \cdot \textbf{f})(x_1,...x_n) : \mathbb{R}^d \rightarrow \mathbb{R}$ via 
           $$(\nabla \cdot \textbf{f})(x_1,...x_n) = \sum_{i=1}^{n} \frac{dy_i}{dx_i}(x_1,...,x_n)$$
         </li>
