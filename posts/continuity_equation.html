@@ -32,6 +32,7 @@
       <h1>Flux, Flow, and the Continuity Equation</h1>
       <!-- TODO: Set time correctly-->
       <!-- TODO: Spellcheck-->
+      <!-- TODO: Make it clear why we bold certain things and not others. -->
       <!-- TODO: Make it possible that types for each thing are in one place and I can just reference them rather than type each time -->
       <p><time datetime="2025-09-20">September 20, 2025</time></p>
 
@@ -75,9 +76,13 @@
             </li>
             <li>
               ⚠️ We have to be careful when thinking about $\nabla \cdot \textbf{j}$, because $\textbf{j} : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}^d$ has $d+1$ input dimensions ($d$ for space, $1$ for time), and has $d$ output dimensions ($d$ for space), but our definition of divergence wants the number of input and output dimensions to be the same. We "ignore" the time dimension because we are interested in calculating, at a fixed point in time, the total flux over a spatial surface of an iniftinitely small volume centered at a fixed point in space. We could say $\textbf{j}_{t}(x_1,...,x_n) = \textbf{j}(x_1,...,x_n,t)$ and work with $j_{t}$ to make things more clear (but we won't). This may also be clearer when examining the relationship between divergences and surface integrals via the Fundamental Theorem for Divergences, but that is not explored now.
+              <!-- TODO: Zoheb says this can be better unerstood via 4-gradients, check out wikipedia page linked above on relativity -->
             </li>
             <li>
-              Let's compute the units of $\nabla \cdot \textbf{j}$. We know that the (relevant) input variables for $\textbf{j}$ are spatial ($m$, see note above), and that the output variable units are $\frac{q}{sm^2}$. Since $\nabla \cdot f$ takes a vector field $f$ and produces a scalar field whose output variables are of units $\frac{a}{b}$ where $a$ and $b$ are the output and input units of $f$, then $\nabla \cdot \textbf{j}$ has units $\frac{\frac{q}{sm^2}}{m} = \frac{q}{sm^3}$
+              Let's compute the units of $\nabla \cdot \textbf{j}$. We know that the (relevant) input variables for $\textbf{j}$ are spatial ($m$, see note above), and that the output variable units are $\frac{q}{sm^2}$. Since $\nabla \cdot f$ takes a vector field $f$ and produces a scalar field whose output variables are of units $\frac{a}{b}$ where $a$ and $b$ are the output and input units of $f$, then $\nabla \cdot \textbf{j}$ has units $\frac{\frac{q}{sm^2}}{m} = \frac{q}{sm^3}$. 
+            </li>
+            <li> <!-- TODO: Add hyperlink refs to jump around the page -->
+              We just confirmed that $\frac{d\rho}{dt}$ and $\nabla \cdot \textbf{j}$ have the same units of $\frac{q}{sm^3}$, which means we can add them together like is done in the continuity equation. That's great! The last thing is we need to define $\sigma$, and make sure it has the same units.
             </li>
           </ul>
         </li>
