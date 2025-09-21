@@ -50,6 +50,9 @@
             <li>$x : \mathbb{R}^d$ represents position in space. Say the units are meters $m$.</li>
             <li>$t : \mathbb{R}$ represents point in time. Say the units are seconds $s$.</li>
             <li>$\rho : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R} $ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$.</li>
+            <li>$\frac{d\rho}{dt}(x,t) :  \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}$ represents the derivative of density w.r.t time, or the rate of change of density (at a given point in space and time). Since the units of $\rho$ are $\frac{q}{m^3}$, and we're taking the derivative of it w.r.t time, then the units of $\frac{d\rho}{dt}$ is $\frac{\frac{q}{m^3}}{s} = \frac{q}{sm^3}$ (since derivative has units of the ratio between output and input variable types, see definition of derivative for more information.)
+            </li>
+            <li>Since $\frac{d\rho}{dt}$ has units $\frac{q}{sm^3}$, and in the continuity equation we add it to $\nabla \cdot \textbf{j}$, and we can only add things together that have the same units, we better make sure that $\nabla \cdot \textbf{j}$ has the same units. Let's check that out. </li>
           </ul>
         </li>
         <li>$\textbf{j} = \rho\textbf{v}$ is the flux of $q$, where flux represents total the amount of $q$ per unit time ($s$) per unit surface area. Say the units are $\frac{q}{sm^2}$
