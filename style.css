@@ -9,6 +9,8 @@ body {
   line-height: 1.4;
 }
 
+
+
 a {
   color: #0066cc;
   text-decoration: none;
@@ -56,4 +58,20 @@ footer {
   padding-top: 1rem;
   color: #777;
   font-size: 0.9rem;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background: #121212;
+  color: #eaeaea;
+}
+
+.dark-mode a {
+  color: #8ab4f8;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3 {
+  color: #ffffff;
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="style.css">
 <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
@@ -29,6 +30,7 @@
     <p><a href="../index.html">&larr; Back to home</a></p>
 
     <article>
+      <button id="theme-toggle">🌙 Night Mode</button>
       <h1>Flux, Flow, and the Continuity Equation</h1>
       <!-- TODO: Set time correctly-->
       <!-- TODO: Spellcheck-->
@@ -105,39 +107,34 @@
       </ul>
       </p>
 
-      <!--
-      <h2>Some section</h2>
-      <p> More content… robotics, physics, whatever. </p>
 
-<pre><code class="language-python">def hello(name):
-    print(f"Hello, {name}!")
-
-hello("world")
-</code></pre>
-
-    </article>
-
-    <footer>
-      <p><a href="../index.html">← Back to home</a></p>
-    </footer>
-  </div>
-</body>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("pre code").forEach(block => {
-    let button = document.createElement("button");
-    button.textContent = "Copy";
-    button.style.cssText = "float:right; margin:4px; font-size:0.8rem;";
-    button.addEventListener("click", () => {
-      navigator.clipboard.writeText(block.innerText);
-      button.textContent = "Copied!";
-      setTimeout(() => button.textContent = "Copy", 2000);
+  <!-- Script for dark mode -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    // If user has a saved preference, use that
+    const savedTheme = localStorage.getItem('theme');
+  
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      // Default to dark if nothing saved
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+  
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-    block.parentNode.insertBefore(button, block);
-  });
-});
-</script>
--->
+  </script>
+
+
+</body> 
+
 
 </html>
