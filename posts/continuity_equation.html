@@ -7,8 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 
   <meta charset="utf-8">
-  <!-- TODO: Make the title match the actual article title-->
-  <title>Title of First Post — Your Name</title>
+  <title>Flux, Flow, and the Continuity Equation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="../style.css">
@@ -44,7 +43,7 @@
 
       The continuity equation describes a type of conservation law, specifically that a quantity can either be (locally) transported, generated, or destroyed. For the continuity equation to hold, a specific relationship between the density and flow of a quantity must be true, which we describe now:
 
-      <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differenatial form as follows:</p>
+      <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differential form as follows:</p>
       <!-- TODO: Note about bolding vector field-->
       <p>$$
         \frac{\partial\rho}{\partial t} + \nabla \cdot \textbf{j} = \sigma 
@@ -83,7 +82,7 @@
               Since the divergence operator is summing up partial derivatives $\frac{\partial y_i}{\partial x_i}$, the units of the resulting scalar field are the same as the units of the partial derivatives. Since the (partial) derivative is a ratio between the change in the function $y_i$ and the change in the input variable $x_i$, then if the units of $y_i$ are $a$ and the units of $x_i$ are $b$, then the units of $\nabla \cdot f$ are $\frac{a}{b}$
             </li>
             <li>
-              ⚠️ We have to be careful when thinking about $\nabla \cdot \textbf{j}$, because $\textbf{j} : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}^d$ has $d+1$ input dimensions ($d$ for space, $1$ for time), and has $d$ output dimensions ($d$ for space), but our definition of divergence wants the number of input and output dimensions to be the same. We "ignore" the time dimension because we are interested in calculating, at a fixed point in time, the total flux over a spatial surface of an iniftinitely small volume centered at a fixed point in space. We could say $\textbf{j}_{t}(x_1,...,x_n) = \textbf{j}(x_1,...,x_n,t)$ and work with $j_{t}$ to make things more clear (but we won't). This may also be clearer when examining the relationship between divergences and surface integrals via the Fundamental Theorem for Divergences, but that is not explored now.
+              ⚠️ We have to be careful when thinking about $\nabla \cdot \textbf{j}$, because $\textbf{j} : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}^d$ has $d+1$ input dimensions ($d$ for space, $1$ for time), and has $d$ output dimensions ($d$ for space), but our definition of divergence wants the number of input and output dimensions to be the same. We "ignore" the time dimension because we are interested in calculating, at a fixed point in time, the total flux over a spatial surface of an infinitely small volume centered at a fixed point in space. We could say $\textbf{j}_{t}(x_1,...,x_n) = \textbf{j}(x_1,...,x_n,t)$ and work with $j_{t}$ to make things more clear (but we won't). This may also be clearer when examining the relationship between divergences and surface integrals via the Fundamental Theorem for Divergences, but that is not explored now.
               <!-- TODO: Zoheb says this can be better unerstood via 4-gradients, check out wikipedia page linked above on relativity -->
             </li>
             <li>
