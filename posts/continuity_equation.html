@@ -70,11 +70,21 @@
             <li>
               Since the divergence operator is summing up partial derivatives $\frac{dy_i}{dx_i}$, the units of the resulting scalar field are the same as the units of the partial derivatives. Since the (partial) derivative is a ratio between the change in the function $y_i$ and the change in the input variable $x_i$, then if the units of $y_i$ are $a$ and the units of $x_i$ are $b$, then the units of $\nabla \cdot f$ are $\frac{a}{b}$
             </li>
+            <li>
+              Let's compute the units of $\nabla \cdot \textbf{j}$. We have to be careful, because $\textbf{j} : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}^d$ has $d+1$ input dimensions ($d$ for space, $1$ for time), and has $d$ output dimensions ($d$ for space), but our definition of divergence wants the input and output dimensions to be the same. We "ignore" the time dimension because the fundamental theorem for divergences states that...
+              
+              <!--
+              $$blah$$
+
+              the divergence of the flux represents taking an integral of the flux over an infinitisemly small closed surface around some point in space and time.
+              -->
+            </li>
           </ul>
         </li>
       </ul>
       </p>
 
+      <!--
       <h2>Some section</h2>
       <p> More content… robotics, physics, whatever. </p>
 
@@ -107,5 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+-->
 
 </html>
