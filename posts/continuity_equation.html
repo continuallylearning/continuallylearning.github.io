@@ -34,7 +34,10 @@
       <!-- TODO: Spellcheck-->
       <!-- TODO: Make it clear why we bold certain things and not others. -->
       <!-- TODO: Make it possible that types for each thing are in one place and I can just reference them rather than type each time -->
+      <!-- TODO: Look at the integral form -->
       <p><time datetime="2025-09-20">September 20, 2025</time></p>
+
+      The continuity equation describes a type of conservation law, specifically that a quantity can either be (locally) transported, generated, or destroyed. For the continuity equation to hold, a specific relationship between the density and flow of a quantity must be true, which we describe now:
 
       <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differenatial form as follows:</p>
       <!-- TODO: Note about bolding vector field-->
@@ -44,7 +47,7 @@
       </p>
 
       <p>
-      where
+      To understand this equation, we will define all the terms and operators, in addition to defining their units/types to make it clear why the equation makes sense.
       <ul>
         <li>$\rho$(x,t) is a scalar field representing the density of a quantity $q$ at a position $x$ at time $t$.
           <ul>
@@ -84,6 +87,16 @@
             <li> <!-- TODO: Add hyperlink refs to jump around the page -->
               We just confirmed that $\frac{d\rho}{dt}$ and $\nabla \cdot \textbf{j}$ have the same units of $\frac{q}{sm^3}$, which means we can add them together like is done in the continuity equation. That's great! The last thing is we need to define $\sigma$, and make sure it has the same units.
             </li>
+          </ul>
+        </li>
+        <li>
+          $\sigma(x,t)$ represents the amount of $q$ generated per unit volume per unit time, and it's a scalar field. The units are therefore $\frac{q}{sm^3}$, which matches the left side of the equation, which means everything "types out" correctly.
+          <ul>
+          <li>When $\sigma$ positive, it represents a source from which $q$ is generated, and when it's negative, it represents a sink for where $q$ is removed.
+          </li>
+          <li>
+            When $q$ represents a conserved quantity (a quantity that can't be generated or destroyed, only transferred), then $\sigma=0$, which would mean $\frac{d\rho}{dt} = - \nabla \cdot \textbf{j}$.
+          </li>
           </ul>
         </li>
       </ul>
