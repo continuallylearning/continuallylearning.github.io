@@ -50,7 +50,8 @@
             <li>$\rho : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R} $ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$.</li>
         </ul>
         </li>
-        <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $f(x_1,...,x_n)=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$
+        <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $f(x_1,...,x_n) : \mathbb{R}^d \rightarrow \mathbb{R}^d=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$ to a scalar field $(\nabla \cdot f)(x_1,...x_n) : \mathbb{R}^d \rightarrow \mathbb{R}$ via 
+          $$(\nabla \cdot f)(x_1,...x_n) = \sum_{i=1}^{n} \frac{dy_i}{dx_i}(x_1,...,x_n)$$
         </li>
         <li>Item Three</li>
       </ul>
