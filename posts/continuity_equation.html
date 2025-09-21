@@ -34,7 +34,7 @@
       <p><time datetime="2025-09-20">September 20, 2025</time></p>
 
       <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differenatial form as follows:</p>
-
+      <!-- TODO: Note about bolding vector field-->
       <p>$$
         \frac{d\rho}{dt} + \nabla \cdot \textbf{j} = \sigma 
       $$
@@ -45,15 +45,19 @@
       <ul>
         <li>$\rho$(x,t) is a scalar field representing the density of a quantity $q$ at a position $x$ at time $t$.
           <ul>
-            <li>$\textbf{x} : \mathbb{R}^d$ represents position in space. Say the units are meters $m$.</li>
+            <li>$x : \mathbb{R}^d$ represents position in space. Say the units are meters $m$.</li>
             <li>$t : \mathbb{R}$ represents point in time. Say the units are seconds $s$.</li>
             <li>$\rho : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R} $ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$.</li>
         </ul>
         </li>
-        <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $f(x_1,...,x_n) : \mathbb{R}^d \rightarrow \mathbb{R}^d=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$ to a scalar field $(\nabla \cdot f)(x_1,...x_n) : \mathbb{R}^d \rightarrow \mathbb{R}$ via 
-          $$(\nabla \cdot f)(x_1,...x_n) = \sum_{i=1}^{n} \frac{dy_i}{dx_i}(x_1,...,x_n)$$
+        <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $\textbf{f}(x_1,...,x_n) : \mathbb{R}^d \rightarrow \mathbb{R}^d=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$ to a scalar field $(\nabla \cdot \textbf{f})(x_1,...x_n) : \mathbb{R}^d \rightarrow \mathbb{R}$ via 
+          $$(\nabla \cdot \textbf{f})(x_1,...x_n) = \sum_{i=1}^{n} \frac{dy_i}{dx_i}(x_1,...,x_n)$$
         </li>
-        <li>Item Three</li>
+          <ul>
+            <li>
+              Since the divergence operator is summing up partial derivatives $\frac{dy_i}{dx_i}$, the units of the resulting scalar field are the same as the units of the partial derivatives. Since the (partial) derivative is a ratio between the change in the function $y_i$ and the change in the input variable $x_i$, then if the units of $y_i$ are $a$ and the units of $x_i$ are $b$, then the units of $\nabla \cdot f$ are $\frac{a}{b}$
+            </li>
+          </ul>
       </ul>
       </p>
 
