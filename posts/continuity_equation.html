@@ -31,6 +31,7 @@
     <article>
       <h1>Flux, Flow, and the Continuity Equation</h1>
       <!-- TODO: Set time correctly-->
+      <!-- TODO: Spellcheck-->
       <p><time datetime="2025-09-20">September 20, 2025</time></p>
 
       <p>According to <a href="https://en.wikipedia.org/wiki/Continuity_equation#Differential_form">Wikipedia</a>, the continuity equation can be written in differenatial form as follows:</p>
@@ -50,6 +51,11 @@
             <li>$\rho : \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R} $ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$.</li>
         </ul>
         </li>
+
+        <li>
+          $\textbf{j} = \rho\textbf{v}$ is the flux of $q$, where flux represents the amount of $q$ per unit time ($s$) passing through a unit surface area ($m^2$). Say the units are $\frac{q}{sm^2}$
+        </li>
+
         <li>$\nabla \cdot$ is the divergence operator. It maps a vector field $\textbf{f}(x_1,...,x_n) : \mathbb{R}^d \rightarrow \mathbb{R}^d=\begin{bmatrix} y_1(x_1,..,x_n) \\ ... \\ y_n(x_1,...,x_n) \end{bmatrix}$ to a scalar field $(\nabla \cdot \textbf{f})(x_1,...x_n) : \mathbb{R}^d \rightarrow \mathbb{R}$ via 
           $$(\nabla \cdot \textbf{f})(x_1,...x_n) = \sum_{i=1}^{n} \frac{dy_i}{dx_i}(x_1,...,x_n)$$
         </li>
