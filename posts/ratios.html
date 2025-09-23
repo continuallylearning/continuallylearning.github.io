@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+
+  <meta charset="utf-8">
+  <title>Ratios and Proportions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+  <div class="container">
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+    <article>
+      <button id="theme-toggle">🌙 Night Mode</button>
+      <h1>Ratios and Proportions</h1>
+      <!-- TODO: Set time correctly-->
+      <!-- TODO: Spellcheck-->
+      <p><time datetime="2025-09-20">September 23, 2025</time></p>
+
+      According to <a href="https://en.wikipedia.org/wiki/Proportion_(mathematics)">Wikipedia</a>, a proportion is a mathematical statement expressing the equality of two ratios, and a <a href="https://en.wikipedia.org/wiki/Ratio">ratio</a> shows how many times one number contains another.
+       
+      $$a : b = c : d$$
+
+      $a$ and $d$ are called the extremes, and $b$ and $c$ are called the means. Proportions can be written as fractions:
+      
+      $$ \frac{a}{b} = \frac{c}{d} $$
+
+
+      <h2>Properties of ratios</h2>
+      <!-- TODO: Make this an equation that can be reference-->
+      $$\frac{a+c}{b+d} = \frac{a}{b} = \frac{c}{d}$$
+
+      Why is this true? Consider there is some nunber $x$ that we can multiply $a$ by to get $c$ (i.e: $a\cdot x = c$), which is the same number that we can multiply $b$ by to get $d$ (i.e: $b\cdot x = d$):
+
+      $$ \frac{a}{b} = \frac{a(x)}{b(x)} = \frac{c}{d} $$
+
+      We can multiply a ratio by $1$ and not change it. Consider multiplying the ratio by a fancy version of $1$ that equals $\frac{(1+x)}{(1+x)}$
+
+      $$\frac{a}{b} = \frac{a(1+x)}{b(1+x)} = \frac{a + ax}{b + bx} = \frac{a + c}{b + d}$$
+
+  <!-- Script for dark mode -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    // If user has a saved preference, use that
+    const savedTheme = localStorage.getItem('theme');
+  
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      // Default to dark if nothing saved
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+  
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+
+
+</body> 
+
+
+</html>
