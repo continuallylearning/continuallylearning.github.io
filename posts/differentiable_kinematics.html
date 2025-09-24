@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 
   <meta charset="utf-8">
-  <title>Ratios and Proportions</title>
+  <title>Jacobians and Differentiable Kinematics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="../style.css">
@@ -30,31 +30,12 @@
 
     <article>
       <button id="theme-toggle">🌙 Night Mode</button>
-      <h1>Ratios and Proportions</h1>
+      <h1>Jacobians and Differentiable Kinematics</h1>
       <!-- TODO: Set time correctly-->
       <!-- TODO: Spellcheck-->
-      <p><time datetime="2025-09-20">September 23, 2025</time></p>
+      <p><time datetime="2025-09-20">September 21, 2025</time></p>
 
-      According to <a href="https://en.wikipedia.org/wiki/Proportion_(mathematics)">Wikipedia</a>, a proportion is a mathematical statement expressing the equality of two ratios, and a <a href="https://en.wikipedia.org/wiki/Ratio">ratio</a> shows how many times one number contains another.
-       
-      $$a : b = c : d$$
-
-      $a$ and $d$ are called the extremes, and $b$ and $c$ are called the means. Proportions can be written as fractions:
-      
-      $$ \frac{a}{b} = \frac{c}{d} $$
-
-
-      <h2>Properties of proportions</h2>
-      <!-- TODO: Make this an equation that can be reference-->
-      $$\frac{a+c}{b+d} = \frac{a}{b} = \frac{c}{d}$$
-
-      Why is this true? Consider that if $ \frac{a}{b} = \frac{c}{d}$, then there is some nunber $x$ that we can multiply $a$ by to get $c$ (i.e: $a\cdot x = c$), which is the same number that we can multiply $b$ by to get $d$ (i.e: $b\cdot x = d$):
-
-      $$ \frac{a}{b} = \frac{a}{b} \cdot \frac{x}{x} = \frac{a \cdot x}{b \cdot x} = \frac{c}{d} $$
-
-      We can multiply a ratio by $1$ and not change it. Consider multiplying the ratio by a fancy version of $1$ that equals $\frac{(1+x)}{(1+x)}$
-
-      $$\frac{a}{b} = \frac{a}{b} \cdot \frac{(1+x)}{(1+x)} = \frac{a \cdot (1+x)}{b \cdot (1+x)} = \frac{a + a \cdot x}{b + b \cdot x} = \frac{a + c}{b + d}$$
+      One way to model a robot is as a collection of rigid-body components (called links). At any moment in time, each link has a 3D pose (position and orientation) in space. 
 
   <!-- Script for dark mode -->
   <script>
