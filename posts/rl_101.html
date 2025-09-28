@@ -85,10 +85,10 @@
       \tau_{T} = \{s_0,a_0,r_0,s_1,a_1,r_1,...,s_{T-1},a_{T-1},r_{T-1}, s_{T}\}
        $$
   
-      Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. There is an intuitive and mathematical justification for this. Intuitively, we think of the environment at time $t=0$ to be in some start state $s_{0}$. The agent will then sample an action $a_{1} \sim \pi(*|s_0)$, and the environment will produce a reward $r_1$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
+      Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. There is an intuitive and mathematical justification for this. Intuitively, we think of the environment at time $t=0$ to be in some start state $s_{0}$. The agent will then sample an action $a_{0} \sim \pi(*|s_0)$, and the environment will produce a reward $r_0$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
   
 
-    <h2>Trajectories have a cumulative discounted rewards</h2>
+    <h2>Trajectories have a cumulative discounted reward</h2>
     To formalize the idea that some trajectories are "better", we want to be able to associate a scalar number to each trajectory, and "better" trajectories should be assigned higher numbers. The best trajectory has the bigger number! We formalize this by defining a function $G(\tau): \tau_{T} \in \mathbb{T} \rightarrow {\mathbb{R}}$ that maps a trajectory to a single number representing the cumulative discounted rewards:
 
     $$
