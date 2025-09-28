@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+
+  <meta charset="utf-8">
+  <title>Advantage in Reinforcement Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+  <div class="container">
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+    <article>
+      <button id="theme-toggle">🌙 Night Mode</button>
+      <h1>Advantage in Reinforcement Learning</h1>
+      <!-- TODO: Set time correctly-->
+      <!-- TODO: Spellcheck-->
+      <p><time datetime="2025-09-20">September 27, 2025</time></p>
+
+      In Reinforcement Learning (RL), we define the advantage $A^{\pi}(s,a)$ of a policy $\pi$ as:
+
+      $$
+      A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s)
+      $$
+
+      One way to interpret the advantage is as the relative value of taking a certain action $a$ from a state $s$, and then following the policy (This is exactly what $Q^{\pi}(s,a)$ represents), as compared to the expected value of following the policy from state $s$ (This is exactly what $V^{\pi}(s)$ represents)
+      <h2>Advantage is equal to expected TD error</h2>
+      Another way of interpreting the advantage is as the expected TD error:
+
+      $$
+      \begin{aligned}
+      A^{\pi}(s,a) &= Q^{\pi}(s,a) - V^{\pi}(s) &\quad& \text{(definition of advantage)} \\
+      &= \mathbb{E}_{s',r \sim T,R}[r + \gamma \cdot V^{\pi}(s')] - V^{\pi}(s) &\quad& \text{(substitute $Q$)} \\
+      &= \mathbb{E}_{s',r \sim T,R}[r + \gamma \cdot V^{\pi}(s') - V^{\pi}(s)] &\quad& \text{(linearity of expectation)}
+      \end{aligned}
+      $$
+      
+
+      Where $T$, $R$, and $\gamma$ are the transition dynamics, reward function, and discount factor for the MDP. $r + \gamma V^{\pi}(s) - V^{\pi}(s)$ is the (one-step) TD-Error.
+  <!-- Script for dark mode -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    // If user has a saved preference, use that
+    const savedTheme = localStorage.getItem('theme');
+  
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      // Default to dark if nothing saved
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+  
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+
+
+</body> 
+
+
+</html>
