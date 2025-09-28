@@ -55,7 +55,24 @@
       
 
       Where $T$, $R$, and $\gamma$ are the transition dynamics, reward function, and discount factor for the MDP. $r + \gamma V^{\pi}(s) - V^{\pi}(s)$ is the (one-step) TD-Error.
-  <!-- Script for dark mode -->
+      
+      <h2>Expected Advantage is 0</h2>
+      If we take the expectation of the advantage over the distriubtion of actions from the policy (in a given state $s$), we ge the following:
+
+      $$
+      \begin{aligned}
+      \mathbb{E}_{a \sim \pi(*|s)}[A^{\pi}(s,a)] &= \mathbb{E}_{a \sim \pi(*|s)}[Q^{\pi}(s,a) - V^{\pi}(s)] &\quad& \text{(expectation applied to advantage definition)} \\
+      &= \mathbb{E}_{a \sim \pi(*|s)}[Q^{\pi}(s,a)] - \mathbb{E}_{a \sim \pi(*|s)}[V^{\pi}(s)] &\quad& \text{(linearity of expectation)} \\
+      &= V^{\pi}(s) - \mathbb{E}_{a \sim \pi(*|s)}[V^{\pi}(s)] &\quad& \text{(substitute $\mathbb{E}_{a \sim \pi(*|s)}[Q^{\pi}(s,a)]$ for $V^{\pi}(s)$)} \\
+      &= V^{\pi}(s) - V^{\pi}(s) &\quad& \text{($V^{\pi}(s)$ doesn't depend on $a$ so expectation is ignored)} \\
+      &= 0
+      \end{aligned}
+      $$
+
+      This means that that the expected advantage (under the policy) is 0, which makes sense when we consider the first interpretation of advantage (relative value of an action and the value of following the policy).
+
+
+      <!-- Script for dark mode -->
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
