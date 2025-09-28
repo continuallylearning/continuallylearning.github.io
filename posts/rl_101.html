@@ -109,17 +109,18 @@
     For a specific environment $MDP$ and policy $\pi$, we can define the probability of a trajectory $\tau_{T}$ as:
 
     $$
-    Pr(\tau_{T}) = d^{\pi}(s_0) \cdot \prod_{t=1}^{T} \pi(a_{t-1} | s_{t-1}) \cdot R(r_{t-1}|s_{t-1},a_{t-1}) \cdot T(s_t | s_{t-1}, a_{t-1})
+    Pr_{\pi,T,R}(\tau_{T}) = Pr(s_0) \cdot \prod_{t=1}^{T} \pi(a_{t-1} | s_{t-1}) \cdot R(r_{t-1}|s_{t-1},a_{t-1}) \cdot T(s_t | s_{t-1}, a_{t-1})
     $$
 
     <ul>
-      <li>$d^{\pi}(s) = Pr(s_0=s) : S \rightarrow [0,1]$ is called the starting state distribution, and is a distribution over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This (marginal) distriubtion can depend on the policy or be independent of it, which is why $\pi$ is in the superscript of $d^{\pi}$.</li>
+      <li>We add $\pi$, $T$, and $R$ to the subscript of $Pr(\tau)$ to emphasize that this probabiltiy depends on the distriubtions of the policy, transition dynamics, and reward function, but when that is not relavant, we just refer to it as $Pr(\tau)$.</li>
+      <li>$Pr(s_0) = d(s): S \rightarrow [0,1]$ is called the starting state distribution, and is a distribution over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This (marginal) distriubtion can be dependent (or indepndent) of the policy and transition dynamics.</li>
       <li>Homework Problem: Getting the time indices to all line up takes care! Confirm that our definition of $Pr(\tau_{T})$ doesn't have an "index out of bounds" error.</li>
     </ul>
 
   Now that we have defined that we have defined the (cumulative discounted) value of a trajectory, as well as the probability of a trajectory, we can define a goal via the <i>reward hypothesis</i>
 
-  <h2>Goals are maximizing cumulative discounted expected rewards</h2>
+  <h2>Goals are maximizing Cumulative Discounted Expected (CDE) rewards</h2>
 
   <a href="http://incompleteideas.net/rlai.cs.ualberta.ca/RLAI/rewardhypothesis.html">To quote Rich Sutton, the reward hypothesis is defined as </a>:
 
@@ -135,10 +136,30 @@
   \end{aligned}
 
   <ul>
-    <li>We've done all the work to define all the terms in this optimization problem. Note that $Pr(\tau)$ depends on $\pi$, $T$ and $R$, while $G(\tau)$ just depends on $\gamma$ (Confirm this by looking at the definition of $G(\tau)$ and $Pr(\tau)$ and see what is required to compute them given you have $\tau$ already). We won't discuss here, but this is crucial for deriving <a href="https://spinningup.openai.com/en/latest/algorithms/vpg.html">the policy gradient</a>. </li>
+    <li>We've done all the work to define all the terms in this optimization problem. Note that $Pr(\tau)$ depends on $\pi$, $T$ and $R$, while $G(\tau)$ just depends on $\gamma$ (Confirm this by looking at the definition of $G(\tau)$ and $Pr(\tau)$ and see what is required to compute them given you have $\tau$ already). To emphasize this, we may write $Pr_{\pi,T,R}(\tau)$ to emphasize the probability depends on the policy, which we leverage shortly. </li>
     <li>We call $\pi^{*}$ the optimal policy, and "solving the RL problem" amounts to finding the optimal policy (or at least getting as "close" to optimal as possible). The optimal policy does not need to be unique (i.e: there may be multiple optimal policies for a single MDP).</li>
   </ul>
 
+  In order to final optimal policies, it helps to understand the CDE rewards of a policy from different states. We formalize this idea with the idea of a value function $V{\pi}(s)$
+
+  <h2>Value functions represent CDE rewards from a state</h2>
+  The value function $V^{\pi}(s)$ is defined as the CDE rewards conditioned on running the policy $\pi$ from a given state $s$:
+
+  $$
+  V^{\pi}(s) = \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau) | s_0 = s]
+  $$
+
+  Given a policy $\pi$ and an MDP, estimating $V{\pi}(s)$ is called <i>policy evaluation</i>.
+  
+
+  One way to understand why the value function is useful (i.e: why evaluating a policy is useful) is to define our objective above with it:
+
+  \begin{aligned}
+  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau)] \\
+  &= \arg \max_{\pi \in \Pi} \mathbb{E}_{s \sim d(*)}[V^{\pi}(s)]
+  \end{aligned}
+  
+  Notice how in the first line, the expectation is over a distributions of trajectories, while in the second line, the expectation is over a distribution of (starting) states. This means that the cumulative discounted expected rewards of a policy (over a distriubtion of trajectories) is equal to the expected value function of a policy (over the distriubtion of starting states).
 
 
   <!-- Script for dark mode -->
