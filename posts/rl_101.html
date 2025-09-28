@@ -38,6 +38,8 @@
 
       Reinforcement Learning (RL) is a framework and collection of approaches for creating agents that can interact with environments to achieve goals. 
       
+      <!-- TODO: Make jumps to each section here-->
+       <!-- Put the name of the section as answer for each question here, encourage people to jump around as needed. -->
       Some natural questions to ask are:
       <ul>
         <li>What is an environment?</li>
@@ -75,27 +77,29 @@
       
       Intuitively, an agent's behavior is determined by how it acts in different situations. A policy $\pi(a|s)$ determines how an agent acts in different situations, because we can sample actions from the policy given a state $a \sim \pi(*|s)$.
     
-    <h2>Trajectories have a cumulative discounted return</h2>
-    To formalize the idea that some trajectories are "better", we want to be able to associate a scalar number to each trajectory, and "better" trajectories should be assigned higher numbers. The best trajectory has the bigger number! We formalize this by defining a function $G(\tau): \tau_{T} \in \mathbb{T} \rightarrow {\mathbb{R}}$ that maps a trajectory to a single number representing the cumulative discounted returns:
+    <h2>Policies generate trajectories by interacting with environment</h2>
+      
+      When an agent (policy) interacts with an environment (MDP) for $T$ timesteps, it generates a trajectory $\tau_T$. More formally, we define a trajectory as a sequence of $T$ steps, where each step contains a state, action, and reward:
+  
+       $$
+      \tau_{T} = \{s_0,a_0,r_0,s_1,a_1,r_1,...,s_{T-1},a_{T-1},r_{T-1}, s_{T}\}
+       $$
+  
+      Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. There is an intuitive and mathematical justification for this. Intuitively, we think of the environment at time $t=0$ to be in some start state $s_{0}$. The agent will then sample an action $a_{1} \sim \pi(*|s_0)$, and the environment will produce a reward $r_1$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
+  
+
+    <h2>Trajectories have a cumulative discounted rewards</h2>
+    To formalize the idea that some trajectories are "better", we want to be able to associate a scalar number to each trajectory, and "better" trajectories should be assigned higher numbers. The best trajectory has the bigger number! We formalize this by defining a function $G(\tau): \tau_{T} \in \mathbb{T} \rightarrow {\mathbb{R}}$ that maps a trajectory to a single number representing the cumulative discounted rewards:
 
     $$
     G(\tau_T) = \sum_{t=0}^{T-1} \gamma^{t} \cdot r_{t}
     $$
 
     <ul>
-      <li>When the discount factor $\gamma=1$, then this is just the cumulative rewards of the trajectory. Since $\gamma$ is between $0$ and $1$ and is exponential in time, we are (exponentially) discsounting future rewards, which is why we call $G(\tau)$ the cumulative discounted returns.</li>
+      <li>When the discount factor $\gamma=1$, then this is just the cumulative rewards of the trajectory. Since $\gamma$ is between $0$ and $1$ and is exponential in time, we are (exponentially) discsounting future rewards, which is why we call $G(\tau)$ the cumulative discounted rewards.</li>
     </ul>
 
-    <h2>Policies generate trajectories by interacting with environment</h2>
-      
-    When an agent (policy) interacts with an environment (MDP) for $T$ timesteps, it generates a trajectory $\tau_T$. More formally, we define a trajectory as a sequence of $T$ steps, where each step contains a state, action, and reward:
-
-     $$
-    \tau_{T} = \{s_0,a_0,r_0,s_1,a_1,r_1,...,s_{T-1},a_{T-1},r_{T-1}, s_{T}\}
-     $$
-
-    Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. There is an intuitive and mathematical justification for this. Intuitively, we think of the environment at time $t=0$ to be in some start state $s_{0}$. The agent will then sample an action $a_{1} \sim \pi(*|s_0)$, and the environment will produce a reward $r_1$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
-
+    Cumulative discounted rewards $G(\tau)$ are crucial for defining what we mean by goals. Although trajectories $\tau$ that make $G(\tau)$ go up high are "good", we also have to account for how likely the trajectory is.
 
     <h2>Probability of trajectory depends on MDP and policy</h2>
 
@@ -109,10 +113,31 @@
     $$
 
     <ul>
-      <li>$d^{\pi}(s) = Pr(s_0=s) : S \rightarrow [0,1]$ is called the starting state distriubtion, and is a distriubtion over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This distriubtion can depend on the policy or be independent of it, which is why $pi$ is in the superscript of $d^{\pi}$.</li>
+      <li>$d^{\pi}(s) = Pr(s_0=s) : S \rightarrow [0,1]$ is called the starting state distribution, and is a distribution over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This (marginal) distriubtion can depend on the policy or be independent of it, which is why $\pi$ is in the superscript of $d^{\pi}$.</li>
       <li>Homework Problem: Getting the time indices to all line up takes care! Confirm that our definition of $Pr(\tau_{T})$ doesn't have an "index out of bounds" error.</li>
     </ul>
 
+  Now that we have defined that we have defined the (cumulative discounted) value of a trajectory, as well as the probability of a trajectory, we can define a goal via the <i>reward hypothesis</i>
+
+  <h2>Goals are maximizing cumulative discounted expected rewards</h2>
+
+  <a href="http://incompleteideas.net/rlai.cs.ualberta.ca/RLAI/rewardhypothesis.html">To quote Rich Sutton, the reward hypothesis is defined as </a>:
+
+  <!-- TODO: Make this quote stand out more -->
+  <br><br>
+  "That all of what we mean by goals and purposes can be well thought of as maximization of the expected value of the cumulative sum of a received scalar signal (reward)."
+  <br><br>
+
+  We can formalize this statement as following optimization problem: Find the policy $\pi$ from a space of policies $\Pi$ that maximizes the Cumulative Discounted Expected rewards (CDE): 
+
+  \begin{aligned}
+  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau)] \\
+  \end{aligned}
+
+  <ul>
+    <li>We've done all the work to define all the terms in this optimization problem. Note that $Pr(\tau)$ depends on $\pi$, $T$ and $R$, while $G(\tau)$ just depends on $\gamma$ (Confirm this by looking at the definition of $G(\tau)$ and $Pr(\tau)$ and see what is required to compute them given you have $\tau$ already). We won't discuss here, but this is crucial for deriving <a href="https://spinningup.openai.com/en/latest/algorithms/vpg.html">the policy gradient</a>. </li>
+    <li>We call $\pi^{*}$ the optimal policy, and "solving the RL problem" amounts to finding the optimal policy (or at least getting as "close" to optimal as possible). The optimal policy does not need to be unique (i.e: there may be multiple optimal policies for a single MDP).</li>
+  </ul>
 
 
 
