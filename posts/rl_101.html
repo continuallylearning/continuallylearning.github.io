@@ -135,7 +135,7 @@
   We can formalize this statement as following optimization problem: Find the policy $\pi$ from a space of policies $\Pi$ that maximizes the Cumulative Discounted Expected rewards (CDE): 
 
   \begin{aligned}
-  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau)] \\
+  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(*)}[G(\tau)] \\
   \end{aligned}
 
   <ul>
@@ -149,16 +149,16 @@
   The value function $V^{\pi}(s)$ is defined as the CDE rewards conditioned on running the policy $\pi$ from a given state $s$:
 
   $$
-  V^{\pi}(s) = \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau) | s_0 = s]
+  V^{\pi}(s) = \mathbb{E}_{\tau \sim Pr(*)}[G(\tau) | s_0 = s]
   $$
 
-  Given a policy $\pi$ and an MDP, estimating $V{\pi}(s)$ is called <i>policy evaluation</i>.
+  Given a policy $\pi$ and an MDP, estimating $V^{\pi}(s)$ is called <i>policy evaluation</i>.
   
 
   One way to understand why the value function is useful (i.e: why evaluating a policy is useful) is to define our objective above with it:
 
   \begin{aligned}
-  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(\tau)}[G(\tau)] \\
+  \pi^{*} &= \arg \max_{\pi \in \Pi} \mathbb{E}_{\tau \sim Pr(*)}[G(\tau)] \\
   &= \arg \max_{\pi \in \Pi} \mathbb{E}_{s \sim d(*)}[V^{\pi}(s)]
   \end{aligned}
   
