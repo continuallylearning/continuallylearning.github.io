@@ -59,7 +59,7 @@
         <li>$S$ is set of states</li>
         <li>$A$ is set of actions</li>
         <li>$T(s^{'}|s,a) = Pr(s^{'} | s, a) : S \times A \rightarrow [0,1]$ is the transition dynamics, and defines the (conditional) probability of transitioning to a state $s^{'} \in S$ conditioned on executing action $a \in A$ from state $s \in S$.</li>
-        <li>$R(r | s, a) : S \times A \times R \rightarrow [0,1]$ is the reward function, and defines the (conditional) probability of receiving a scalar reward $r$ for taking action $a$ from state $s$.</li>
+        <li>$R(r | s, a) = Pr(r | s, a) : S \times A \times R \rightarrow [0,1]$ is the reward function, and defines the (conditional) probability of receiving a scalar reward $r$ for taking action $a$ from state $s$.</li>
         <ul>
         <li>When the reward is a deterministic function of the state and action, you may see the reward function instead written not as a conditional probability, but as a function $R(r|s,a) : S \times A \rightarrow R$ that maps state and actions directly to a scalar. Our probabilistic formulation generalizes this setting, and makes certain future definitions clearer as will be seen shortly. </li>
         </ul>
