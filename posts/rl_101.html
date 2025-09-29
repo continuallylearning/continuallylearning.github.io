@@ -63,7 +63,7 @@
         <ul>
         <li>When the reward is a deterministic function of the state and action, you may see the reward function instead written not as a conditional probability, but as a function $R(r|s,a) : S \times A \rightarrow R$ that maps state and actions directly to a scalar. Our probabilistic formulation generalizes this setting, and makes certain future definitions clearer as will be seen shortly. </li>
         </ul>
-        <li>$\gamma : \mathbb{R}$ is the discount factor, and it determines how much less valuable rewards become when they are recieved in the future (This will be explained in more detail shortly)</li>
+        <li>$\gamma : \mathbb{R}$ is the discount factor, and it determines how much less valuable rewards become when they are received in the future (This will be explained in more detail shortly)</li>
       </ul>
 
 
@@ -84,8 +84,11 @@
        $$
       \tau_{T} = \{s_0,a_0,r_0,s_1,a_1,r_1,...,s_{T-1},a_{T-1},r_{T-1}, s_{T}\}
        $$
+      <ul>
+        <li>This definition of trajectory (where it ends with state) is somewhat arbitrary, this is just consistent with our following definitions.</li>
+      </ul>
   
-      Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. There is an intuitive and mathematical justification for this. Intuitively, we think of the environment at time $t=0$ to be in some start state $s_{0}$. The agent will then sample an action $a_{0} \sim \pi(*|s_0)$, and the environment will produce a reward $r_0$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
+      Take note our definition of a trajectory $\tau_{T}$ has $T+1$ states in it, but only $T$ actions and rewards. Here is why: we can think of the environment at time $t=0$ as being in some start state $s_{0}$. The agent will then sample an action $a_{0} \sim \pi(*|s_0)$, and the environment will produce a reward $r_0$ and next state $s_1$, and we call this a step. So each step generates an action, reward, and (next) state, and so if we take $T$ steps, and we started with an initial state, we get $T+1$ states and $T$ action and rewards.</li>
   
 
     <h2>Trajectories have a cumulative discounted reward</h2>
@@ -113,8 +116,8 @@
     $$
 
     <ul>
-      <li>We add $\pi$, $T$, and $R$ to the subscript of $Pr(\tau)$ to emphasize that this probabiltiy depends on the distriubtions of the policy, transition dynamics, and reward function, but when that is not relavant, we just refer to it as $Pr(\tau)$.</li>
-      <li>$Pr(s_0) = d(s): S \rightarrow [0,1]$ is called the starting state distribution, and is a distribution over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This (marginal) distriubtion can be dependent (or indepndent) of the policy and transition dynamics.</li>
+      <li>We add $\pi$, $T$, and $R$ to the subscript of $Pr(\tau)$ to emphasize that this probability depends on the distributions of the policy, transition dynamics, and reward function, but when that is not relevant, we just refer to it as $Pr(\tau)$.</li>
+      <li>$Pr(s_0) = d(s): S \rightarrow [0,1]$ is called the starting state distribution, and is a distribution over starting states (i.e: how likely a state $s$ is to be the state the agent starts in). This (marginal) distribution can be dependent (or independent) of the policy and transition dynamics.</li>
       <li>Homework Problem: Getting the time indices to all line up takes care! Confirm that our definition of $Pr(\tau_{T})$ doesn't have an "index out of bounds" error.</li>
     </ul>
 
@@ -140,7 +143,7 @@
     <li>We call $\pi^{*}$ the optimal policy, and "solving the RL problem" amounts to finding the optimal policy (or at least getting as "close" to optimal as possible). The optimal policy does not need to be unique (i.e: there may be multiple optimal policies for a single MDP).</li>
   </ul>
 
-  In order to final optimal policies, it helps to understand the CDE rewards of a policy from different states. We formalize this idea with the idea of a value function $V{\pi}(s)$
+  In order to final optimal policies, it helps to understand the CDE rewards of a policy from different states. We formalize this idea with the idea of a value function $V^{\pi}(s)$
 
   <h2>Value functions represent CDE rewards from a state</h2>
   The value function $V^{\pi}(s)$ is defined as the CDE rewards conditioned on running the policy $\pi$ from a given state $s$:
@@ -159,7 +162,7 @@
   &= \arg \max_{\pi \in \Pi} \mathbb{E}_{s \sim d(*)}[V^{\pi}(s)]
   \end{aligned}
   
-  Notice how in the first line, the expectation is over a distributions of trajectories, while in the second line, the expectation is over a distribution of (starting) states. This means that the cumulative discounted expected rewards of a policy (over a distriubtion of trajectories) is equal to the expected value function of a policy (over the distriubtion of starting states).
+  Notice how in the first line, the expectation is over a distributions of trajectories, while in the second line, the expectation is over a distribution of (starting) states. This means that the cumulative discounted expected rewards of a policy (over a distribution of trajectories) is equal to the expected value function of a policy (over the distribution of starting states).
 
 
   <!-- Script for dark mode -->
