@@ -6,24 +6,25 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 
-  <meta charset="utf-8">
-  <title>Centripetal Acceleration</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<title>Centripetal Acceleration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../style.css">
 
-  <!-- MathJax -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[','\\]']]
-      },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<!-- MathJax -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
+
 <body>
   <div class="container">
     <p><a href="../index.html">&larr; Back to home</a></p>
@@ -31,113 +32,124 @@
     <article>
       <button id="theme-toggle">🌙 Night Mode</button>
       <h1>Centripetal Acceleration</h1>
-      <!-- TODO: Set time correctly-->
-      <!-- TODO: Spellcheck-->
+
       <p><time datetime="2025-09-20">November 9th, 2025</time></p>
 
-      Centripetal acceleration is inward acceleration the body undergoes during the uniform, circular 2D motion. We can derive it kinematically by taking the derivative of $p(t)$ twice with respect to time, which gives us the acceleration. By multiplying the resulting acceleration by mass, we can calculate the centripedal force. 
+      <p>
+      Centripetal acceleration is the inward acceleration a body undergoes during uniform 2D circular motion. We can derive it kinematically by taking the derivative of $p(t)$ twice with respect to time, which gives the acceleration. By multiplying this acceleration by mass, we obtain the centripetal force.
+      </p>
 
-      <h2>Position in uniform, 2D circular motion</h2>
+      <h2>Position in uniform 2D circular motion</h2>
 
-      Consider a body moving in uniform, 2D circular motion. By 2D circular motion, we mean that the position $p(t) : \mathbb{R} \rightarrow \mathbb{R}^2 $ of the body at time $t$ can expressed as:
-  
+      <p>
+      Consider a body moving in uniform, 2D circular motion. The position $p(t) : \mathbb{R} \rightarrow \mathbb{R}^2$ at time $t$ can be expressed as:
+      </p>
+
       $$
-      p(t) = \begin{bmatrix}
+      p(t) =
+      \begin{bmatrix}
       x(t) \\
       y(t)
-    \end{bmatrix}
-    = \begin{bmatrix}
-    rcos(\theta(t)) \\
-    rsin(\theta(t))
-  \end{bmatrix}
-
-  = \begin{bmatrix}
-  rcos(\omega t) \\
-  rsin(\omega t)
-\end{bmatrix}
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      r \cos(\theta(t)) \\
+      r \sin(\theta(t))
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      r \cos(\omega t) \\
+      r \sin(\omega t)
+      \end{bmatrix}
       $$
 
       where
 
-      \begin{aligned}
-      \theta(t) = \omega t \\
+      \[
+      \theta(t) = \omega t, \qquad
       \omega = 2\pi f
-      \end{aligned}
+      \]
 
-      Here, $\theta(t)$ represents the angle in the circle where the body is at time $t$, and $\omega$ is the magnitude of angular velocity of the body. Since we assume the circular motion is uniform, we assume $\omega$ is a constant with respect to time. More specifically, if the body rotates around the circle at a certain frequency $f$, then we can say $\omega = 2\pi f$ to relate frequency to angular velocity, and express the amount of radians per unit time the body rotates around the circle. 
+      <p>
+      Here, $\theta(t)$ represents the angular position, and $\omega$ is the angular velocity of the body. Since the motion is uniform, $\omega$ is constant. If the body completes rotations at frequency $f$, then $\omega = 2\pi f$.
+      </p>
 
-      <h2>Linear velocity in uniform, 2D circular motion</h2>
+      <h2>Linear velocity in uniform 2D circular motion</h2>
 
-      Now that we've defined position, lets calculate the first derivate of $p(t)$ with respect $t$, which is the linear velocity $v(t)$. Note that we'll have to apply the chain rule:
+      <p>
+      Now that we've defined position, let's compute the first derivative of $p(t)$ with respect to $t$, which is the linear velocity $v(t)$. Using the chain rule:
+      </p>
 
       $$
-      v(t) = \frac{\partial p}{\partial t}(t) = \begin{bmatrix}
-      \frac{\partial x}{\partial t}(t)\\
-      \frac{\partial y}{\partial t}(t)\\
-      \end{bmatrix} =
-
+      v(t) = \frac{\partial p}{\partial t}(t) =
       \begin{bmatrix}
-      -r\omega sin(\omega t) \\
-      r\omega cos(\omega t)\\
+      -r\omega \sin(\omega t) \\
+      r\omega \cos(\omega t)
       \end{bmatrix}
       =
-      \omega \begin{bmatrix}
+      \omega
+      \begin{bmatrix}
       -y(t) \\
-      x(t)\\
+      x(t)
       \end{bmatrix}
       $$
 
-      Since the magnitude of $p(t)$ must always equal $r$ (due to circular motion), we have actually just shown that the magnitude of $v = \omega r$ and that the linear velocity is pointing in a direction perpendicular to the direction towards the circle's center. 
+      <p>
+      Since the magnitude of $p(t)$ is always $r$, we see that the magnitude of $v(t)$ is $\omega r$, and that the velocity vector is perpendicular to the radius (and therefore tangent to the circle).
+      </p>
 
+      <h2>Centripetal acceleration in uniform 2D circular motion</h2>
 
-      <h2>Centripedal acceleration in uniform, 2D circular motion</h2>
-      Let's take the derivative of the linear velocity with respect to time:
+      <p>Taking the derivative of $v(t)$ with respect to time:</p>
 
-      
       $$
-      a(t) = \frac{\partial^{2} p}{\partial t^{2}}(t) = \begin{bmatrix}
-      \frac{\partial^2 x}{\partial t^2}(t)\\
-      \frac{\partial^2 y}{\partial t^2}(t)\\
-      \end{bmatrix} =
-
+      a(t) =
       \begin{bmatrix}
-      -r\omega^2 cos(\omega t) \\
-      -r\omega^2 sin(\omega t)\\
+      -r\omega^2 \cos(\omega t) \\
+      -r\omega^2 \sin(\omega t)
       \end{bmatrix}
       =
-      \omega^2 \begin{bmatrix}
+      \omega^2
+      \begin{bmatrix}
       -x(t) \\
-      -y(t)\\
+      -y(t)
       \end{bmatrix}
-      = 
-      -\omega^2 p(t)
+      = -\omega^2 p(t)
       $$
 
-      We have just shown that the centripedal acceleration points in the exact opposite direction of the position vector (i.e: the acceleration is always inwards towards the circle center and therefore perpendicular to the linear velocity), and it's magnitude is $\omega^{2}*r$ (since $p(t)$ has magnitude $r$). Since $\omega = \frac{v}{r}$, we can see That
+      <p>
+      We have shown that the centripetal acceleration points exactly opposite the position vector (i.e., toward the center), and its magnitude is $\omega^2 r$. Since $\omega = \frac{v}{r}$, we have
+      </p>
 
       $$
-      a = -\omega^2 p(t) = -\omega^2 r\hat{p}(t) = - (\frac{v}{r})^2 r\hat(p)(t) = - \frac{v^2}{r} \hat{p}(t)
+      a(t) = -\omega^2 p(t)
+        = -\omega^2 r\,\hat{p}(t)
+        = -\left(\frac{v}{r}\right)^2 r\,\hat{p}(t)
+        = -\frac{v^2}{r}\,\hat{p}(t)
       $$
 
-      Where $\hat{p}(t)$ is the unit vector in direction $p(t)$ (i.e: p(t) = r * \hat{p}(t)). We have now shown the direction of centripetal acceleration (towards the center and always perpendicular to linear velocity) and its magnitude ($\frac{v^2}{r}). The direction of centripetal acceleration makes sense since if it wasn't perpendicular to the linear velocity at all times, then there would be acceleration in the linear velocity direction, which would violate the uniform circular motion assumption.
-  
-      <!-- Script for dark mode --> 
+      <p>
+      where $\hat{p}(t)$ is the unit vector in the direction of $p(t)$ (i.e., $p(t) = r \hat{p}(t)$). We have now shown both the direction of centripetal acceleration (inward and perpendicular to the velocity) and its magnitude $\frac{v^2}{r}$. The direction makes sense: if the acceleration were not perpendicular to the velocity, the speed would change, contradicting the assumption of uniform circular motion.
+      </p>
+
+    </article>
+  </div>
+
+  <!-- Script for dark mode --> 
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
-  
-    // If user has a saved preference, use that
+
     const savedTheme = localStorage.getItem('theme');
-  
+
     if (savedTheme === 'light') {
       body.classList.remove('dark-mode');
       toggleBtn.textContent = "🌙 Night Mode";
     } else {
-      // Default to dark if nothing saved
       body.classList.add('dark-mode');
       toggleBtn.textContent = "☀️ Light Mode";
     }
-  
+
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const isDark = body.classList.contains('dark-mode');
@@ -146,8 +158,5 @@
     });
   </script>
 
-
-</body> 
-
-
+</body>
 </html>
