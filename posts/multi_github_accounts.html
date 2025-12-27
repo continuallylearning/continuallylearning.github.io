@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Managing Multiple GitHub Accounts with SSH Keys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Prism (code highlighting) -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+
+  <!-- MathJax (not used here, but kept for consistency) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+
+<body>
+  <div class="container">
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+    <article>
+      <button id="theme-toggle">🌙 Night Mode</button>
+
+      <h1>Managing Multiple GitHub Accounts with SSH Keys</h1>
+
+      <p>
+        <time datetime="2025-11-09">December 27th, 2025</time>
+      </p>
+
+      <p>
+        I maintain multiple GitHub accounts on the same machine:
+      </p>
+
+      <ul>
+        <li><code>eric-rosen</code></li>
+        <li><code>continuallylearning</code></li>
+      </ul>
+
+      <p>
+        The cleanest and most reliable way to work with multiple GitHub accounts on a single computer
+        is to use <strong>separate SSH keys</strong> and map each one to a custom SSH host.
+        This avoids constantly switching credentials or accidentally pushing to the wrong account.
+
+        The setup steps involve:
+        <ul>
+            <li>Create one SSH key per GitHub account</li>
+            <li>Map each key to a custom SSH host</li>
+            <li>Point each repository’s remote at the correct host</li>
+        </ul>
+
+      </p>
+
+      <h2>1. Create an SSH key for each GitHub account</h2>
+
+      <p>
+        Each GitHub account should have its own SSH key pair (public + private).
+        Follow GitHub’s official documentation for each GitHub account, making sure to give custom-names for each SSH key. You can name these hosts and key files however you like—just keep them consistent:
+      </p>
+
+      <ul>
+        <li>
+          Generate a new SSH key and add it to the SSH agent:
+          <br>
+          <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">
+            GitHub Docs – Generating a new SSH key
+          </a>
+        </li>
+        <li>
+          Add the public key to your GitHub account:
+          <br>
+          <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">
+            GitHub Docs – Adding a new SSH key
+          </a>
+        </li>
+      </ul>
+
+      <p>
+        After this step, you should have multiple private and public keys on your machine,
+        one per GitHub account. For example, when I look at the files in the
+        <code>~/.ssh</code> folder, <code>ear_ed25519</code> and <code>ear_ed25519.pub</code>
+        are the private and public keys associated with the <code>eric-rosen</code> GitHub
+        account, whereas <code>id_ed25519</code> and <code>id_ed25519.pub</code> are the private
+        and public keys associated with the <code>continuallylearning</code> account:
+        
+    <pre><code class="language-bash">
+        eric@ericbot:~$ ls -lh ~/.ssh
+        total 36K
+        -rw-rw-r-- 1 eric eric  250 Dec 27 10:40 config
+        -rw------- 1 eric eric  419 Dec 27 10:34 ear_ed25519
+        -rw-r--r-- 1 eric eric  109 Dec 27 10:34 ear_ed25519.pub
+        -rw------- 1 eric eric  419 Feb 17  2024 id_ed25519
+        -rw-r--r-- 1 eric eric  109 Feb 17  2024 id_ed25519.pub
+        -rw------- 1 eric eric 3.4K Sep 21 09:44 id_rsa
+        -rw-r--r-- 1 eric eric  761 Sep 21 09:44 id_rsa.pub
+        -rw------- 1 eric eric  978 Feb 17  2024 known_hosts
+        -rw-r--r-- 1 eric eric  142 Feb 17  2024 known_hosts.old
+    </code></pre>
+      </p>
+
+      <h2>2. Assign a hostname to each SSH key</h2>
+
+      <p>
+        Next, edit your SSH config file:
+      </p>
+
+      <pre><code class="language-bash">
+~/.ssh/config
+      </code></pre>
+
+      <p>
+        Define a separate host entry for each GitHub account:
+      </p>
+
+      <pre><code class="language-bash">
+Host github-eric
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/ear_ed25519
+
+Host github-cl
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+      </code></pre>
+
+      <p>
+        Here:
+      </p>
+
+      <ul>
+        <li><code>IdentityFile</code> points to the private SSH key for that account</li>
+        <li><code>Host</code> is a custom alias you’ll use instead of <code>github.com</code></li>
+      </ul>
+
+      <h2>3. Verify SSH access for each account</h2>
+
+      <p>
+        Test that each SSH key is correctly associated with its GitHub account:
+      </p>
+
+      <pre><code class="language-bash">
+ssh -T git@github-eric
+ssh -T git@github-cl
+      </code></pre>
+
+      <p>
+        Each command should authenticate successfully and indicate which GitHub account you’re logged in as.
+      </p>
+
+      <h2>4. Configure Git remotes to use the correct host</h2>
+
+      <p>
+        To push and pull using the correct account, your repository must:
+      </p>
+
+      <ul>
+        <li>Use SSH (not HTTPS)</li>
+        <li>Reference the correct SSH host</li>
+      </ul>
+
+      <p>
+        Go into directory of the repository, and check your current remote:
+      </p>
+
+      <pre><code class="language-bash">
+git remote -v
+      </code></pre>
+
+      <p>
+        Example output:
+      </p>
+
+      <pre><code class="language-bash">
+origin  git@github.com:eric-rosen/eric-rosen.github.io.git (fetch)
+origin  git@github.com:eric-rosen/eric-rosen.github.io.git (push)
+      </code></pre>
+
+      <p>
+        If the host or username is incorrect, update it using the following format:
+      </p>
+
+      <pre><code class="language-bash">
+git@{host-name}:{repo_username}/{repo_name}.git
+      </code></pre>
+
+      <p>
+        For example:
+      </p>
+
+      <pre><code class="language-bash">
+git remote set-url origin git@github-eric:eric-rosen/eric-rosen.github.io.git
+      </code></pre>
+
+      <h2>5. Final checklist</h2>
+
+      <ul>
+        <li><code>ssh -T</code> works for each custom host</li>
+        <li><code>git remote -v</code> shows the correct SSH host and username</li>
+        <li>Pushes and pulls go to the intended GitHub account</li>
+      </ul>
+
+      <p>
+        If both the SSH test and the remote configuration are correct, you’re all set.
+      </p>
+
+    </article>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

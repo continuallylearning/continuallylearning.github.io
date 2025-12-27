@@ -60,7 +60,40 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Dark mode styles */
+/* ------------------------------ */
+/* Inline code (light mode)       */
+/* ------------------------------ */
+
+article p code,
+article li code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95em;
+  background: rgba(27, 31, 35, 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ------------------------------ */
+/* Code blocks (light mode)       */
+/* ------------------------------ */
+
+pre[class*="language-"] {
+  background: #f6f8fa;
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+code[class*="language-"] {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* ------------------------------ */
+/* Dark mode base styles          */
+/* ------------------------------ */
+
 .dark-mode {
   background: #121212;
   color: #eaeaea;
@@ -70,8 +103,84 @@ footer {
   color: #8ab4f8;
 }
 
-.dark-mode h1, 
-.dark-mode h2, 
+.dark-mode h1,
+.dark-mode h2,
 .dark-mode h3 {
   color: #ffffff;
+}
+
+/* ------------------------------ */
+/* Inline code (dark mode)        */
+/* ------------------------------ */
+
+.dark-mode article p code,
+.dark-mode article li code {
+  background: rgba(148, 163, 184, 0.15);
+  color: #e5e7eb;
+}
+
+/* ------------------------------ */
+/* Code blocks (dark mode)        */
+/* ------------------------------ */
+
+.dark-mode pre[class*="language-"],
+.dark-mode code[class*="language-"] {
+  background: #0f172a;      /* deep slate, easy on eyes */
+  color: #e5e7eb;
+  text-shadow: none;
+}
+
+.dark-mode pre[class*="language-"] {
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+}
+
+/* Prism token overrides (dark) */
+
+.dark-mode .token.comment,
+.dark-mode .token.prolog,
+.dark-mode .token.doctype,
+.dark-mode .token.cdata {
+  color: #64748b;
+}
+
+.dark-mode .token.punctuation {
+  color: #94a3b8;
+}
+
+.dark-mode .token.property,
+.dark-mode .token.tag,
+.dark-mode .token.constant,
+.dark-mode .token.symbol,
+.dark-mode .token.deleted {
+  color: #f87171;
+}
+
+.dark-mode .token.boolean,
+.dark-mode .token.number {
+  color: #fbbf24;
+}
+
+.dark-mode .token.selector,
+.dark-mode .token.attr-name,
+.dark-mode .token.string,
+.dark-mode .token.char,
+.dark-mode .token.builtin,
+.dark-mode .token.inserted {
+  color: #34d399;
+}
+
+.dark-mode .token.operator,
+.dark-mode .token.entity,
+.dark-mode .token.url {
+  color: #60a5fa;
+}
+
+.dark-mode .token.function,
+.dark-mode .token.class-name {
+  color: #a78bfa;
+}
+
+.dark-mode .token.keyword {
+  color: #fb7185;
 }

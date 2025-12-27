@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{POST_TITLE}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Prism (code highlighting) -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+  <!-- Add language components as needed -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script> -->
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+
+<body>
+  <div class="container">
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+    <article>
+      <!-- Theme toggle -->
+      <button id="theme-toggle">🌙 Night Mode</button>
+
+      <!-- Post header -->
+      <h1>{{POST_TITLE}}</h1>
+      <p>
+        <time datetime="{{POST_DATE_ISO}}">{{POST_DATE_HUMAN}}</time>
+      </p>
+
+      <!-- ===================== -->
+      <!-- Blog post content -->
+      <!-- ===================== -->
+
+      <p>
+        {{INTRO_PARAGRAPH}}
+      </p>
+
+      <h2>{{SECTION_TITLE}}</h2>
+
+      <p>
+        {{SECTION_CONTENT}}
+      </p>
+
+      <!-- Example math block -->
+      <!--
+      $$
+      {{MATH_EXPRESSION}}
+      $$
+      -->
+
+      <!-- Example code block -->
+      <!--
+      <pre><code class="language-python">
+{{CODE_SNIPPET}}
+      </code></pre>
+      -->
+
+      <!-- Repeat sections as needed -->
+
+    </article>
+  </div>
+
+  <!-- Dark mode script -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
