@@ -12,18 +12,6 @@
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
-
-  <!-- MathJax (not used here, but kept for consistency) -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[','\\]']]
-      },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
 
 <body>
@@ -52,15 +40,16 @@
         The cleanest and most reliable way to work with multiple GitHub accounts on a single computer
         is to use <strong>separate SSH keys</strong> and map each one to a custom SSH host.
         This avoids constantly switching credentials or accidentally pushing to the wrong account.
+    </p>
 
-        The setup steps involve:
+    <p>The setup steps involve:</p>
         <ul>
             <li>Create one SSH key per GitHub account</li>
             <li>Map each key to a custom SSH host</li>
             <li>Point each repository’s remote at the correct host</li>
         </ul>
 
-      </p>
+      
 
       <h2>1. Create an SSH key for each GitHub account</h2>
 
@@ -91,23 +80,27 @@
         one per GitHub account. For example, when I look at the files in the
         <code>~/.ssh</code> folder, <code>ear_ed25519</code> and <code>ear_ed25519.pub</code>
         are the private and public keys associated with the <code>eric-rosen</code> GitHub
-        account, whereas <code>id_ed25519</code> and <code>id_ed25519.pub</code> are the private
+        account, whereas <code>cl_ed25519</code> and <code>cl_ed25519.pub</code> are the private
         and public keys associated with the <code>continuallylearning</code> account:
         
     <pre><code class="language-bash">
-        eric@ericbot:~$ ls -lh ~/.ssh
-        total 36K
-        -rw-rw-r-- 1 eric eric  250 Dec 27 10:40 config
-        -rw------- 1 eric eric  419 Dec 27 10:34 ear_ed25519
-        -rw-r--r-- 1 eric eric  109 Dec 27 10:34 ear_ed25519.pub
-        -rw------- 1 eric eric  419 Feb 17  2024 id_ed25519
-        -rw-r--r-- 1 eric eric  109 Feb 17  2024 id_ed25519.pub
-        -rw------- 1 eric eric 3.4K Sep 21 09:44 id_rsa
-        -rw-r--r-- 1 eric eric  761 Sep 21 09:44 id_rsa.pub
-        -rw------- 1 eric eric  978 Feb 17  2024 known_hosts
-        -rw-r--r-- 1 eric eric  142 Feb 17  2024 known_hosts.old
+eric@ericbot:~$ ls -lh ~/.ssh
+    total 52K
+    -rw------- 1 eric eric  432 Dec 27 17:25 cl_ed25519
+    -rw-r--r-- 1 eric eric  118 Dec 27 17:25 cl_ed25519.pub
+    -rw-rw-r-- 1 eric eric  250 Dec 27 17:31 config
+    -rw------- 1 eric eric  419 Dec 27 17:30 ear_ed25519
+    -rw-r--r-- 1 eric eric  109 Dec 27 17:30 ear_ed25519.pub
     </code></pre>
       </p>
+
+      The GitHub instructions tell you to add the ssh keys to the SSH agent via <code>ssh-add /PATH/TO/PRIVATE_KEY</code>, make sure you've done this by checking that all the keys are loaded. For example:
+
+      <pre><code class="language-bash">
+eric@ericbot:~$ ssh-add -l
+256 SHA256:rVtbltX9gB1gA+oJ1tdsftbdnXduNdwzedqDKeIMlNE eric.andrew.rosen@gmail.com (ED25519)
+256 SHA256:s19ObVbe6dheJtIPeuhRKJceoi6kV3oJzpdU6Rv/GVk continuallylearninggithub@gmail.com (ED25519)
+</code></pre>
 
       <h2>2. Assign a hostname to each SSH key</h2>
 
@@ -124,15 +117,19 @@
       </p>
 
       <pre><code class="language-bash">
+# GitHub account alias for eric-rosen
 Host github-eric
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/ear_ed25519
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/ear_ed25519
+    IdentitiesOnly yes
 
+# GitHub account alias for continuallylearning
 Host github-cl
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/cl_ed25519
+    IdentitiesOnly yes
       </code></pre>
 
       <p>
@@ -142,7 +139,8 @@ Host github-cl
       <ul>
         <li><code>IdentityFile</code> points to the private SSH key for that account</li>
         <li><code>Host</code> is a custom alias you’ll use instead of <code>github.com</code></li>
-      </ul>
+        <li><code>IdentitiesOnly yes</code> tells SSH to use only the key(s) specified by <code>IdentityFile</code> for this host, and ignore any other keys loaded in the SSH agent.</li>
+    </ul>
 
       <h2>3. Verify SSH access for each account</h2>
 
