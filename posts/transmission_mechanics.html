@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mechanics of Transmissions, Mechanical Advantage, and Reflected Inertia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Prism (code highlighting) -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+
+<body>
+  <div class="container">
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+    <article>
+      <!-- Theme toggle -->
+      <button id="theme-toggle">🌙 Night Mode</button>
+
+      <!-- Post header -->
+      <h1>Mechanics of Transmissions, Mechanical Advantage, and Reflected Inertia</h1>
+      <p>
+        <time datetime="2025-01-01">December 28th, 2025</time>
+      </p>
+
+      <h2>Overview of a Transmission System</h2>
+
+      <p>
+        A transmission system couples the motions of an input shaft (here called the motor) and an output shaft (here called the load). The motor and load shafts are connected via the transmission mechanism (e.g: a gearbox), which has a mechanical advantage/gear ratio that determines how angular velocities, torques and perceived inertias relate between both sides of the transmissions.
+      </p>
+
+      <h2>Basic Electric Motor Model</h2>
+
+      <p>
+        Consider an electric motor, which turns electric energy into kinetic energy. The motor has a motor shaft (i.e: a rotating component), and when a current $I$ is supplied to the motor, a torque $\tau_{motor}$ is produced and applied to the motor shaft. The relationship between current and torque is linear, and the constant of proportionality $k$ is called the torque constant:
+      </p>
+
+      $$
+      \tau_{motor} = k \times I
+      $$
+
+      <h2>Angular Kinematics of the Motor Shaft</h2>
+
+      <p>
+        The motor shaft has an angular position $q_{motor}$, angular velocity $\omega_{motor}$, and angular acceleration $\alpha_{motor}$. Although these functions depend on time (and are related via derivates w.r.t time), we only include the time input in equations when relevant:
+      </p>
+
+      $$
+      \begin{aligned}
+      \omega_{motor}(t) &= \frac{dq_{motor}(t)}{dt}
+      \\
+      \alpha_{motor}(t) &= \frac{d \omega_{motor}(t)}{dt}
+      \end{aligned}
+      $$
+
+      <h2>Linear Kinematics of the Motor Gear</h2>
+
+      <p>
+        Let the motor shaft be the input to a transmission system, which connects to an output shaft called the load. Specifically, let the input motor shaft be connected to the center of a gear with radius $R_{motor}$, and define the tangential position, velocity, and acceleration of a point on the rim of the motor gear as $s_{motor}$, $v_{motor}$, $a_{motor}$. Since the gear is a circle, we know the relationship between linear and angular kinematics:
+      </p>
+
+      $$
+      \begin{aligned}
+      s_{motor} &= R_{motor} \times q_{motor}
+      \\
+      v_{motor} &= R_{motor} \times \omega_{motor}
+      \\
+      a_{motor} &= R_{motor} \times \alpha_{motor}
+      \end{aligned}
+      $$
+
+      <h2>Linear Kinematics of the Load Gear</h2>
+
+      <p>
+        Similarly, the load shaft is attached to a gear of radius $R_{load}$, and the linear and angular kinematics of the load are related via the radius:
+      </p>
+
+      $$
+      \begin{aligned}
+      s_{load} &= R_{load} \times q_{load}
+      \\
+      v_{load} &= R_{load} \times \omega_{load}
+      \\
+      a_{load} &= R_{load} \times \alpha_{load}
+      \end{aligned}
+      $$
+
+      <h2>Gear Contact Constraint</h2>
+
+      <p>
+        Additionally, we assume the input and output gears are making contact at some point where the rims of the gears come into contact, and if there is no slippage, the linear velocities of the rims for the gear must equal each other.
+      </p>
+
+      $$
+      v_{motor} = v_{load}
+      $$
+
+      <h2>Gear Ratio and Mechanical Advantage</h2>
+
+      <p>
+        We can substitute in the angular velocities for the linear velocities, and see that there is a linear relationship between the angular velocities of the motor and load based on the ratio of radii of the gears, which we call $n = \frac{R_{load}}{R_{motor}}$, the gear ratio and determines the mechanical advantage of the transmission system. Notice that the angular velocities of the motor and shaft differ based on the gear ratio.
+      </p>
+
+      $$
+      \begin{aligned}
+
+      v_{motor} &= v_{load}
+      \\
+      R_{motor} \times \omega_{motor} &= R_{load} \times \omega_{load}
+      \\
+      \omega_{motor} &= \frac{R_{load}}{R_{motor}}\times \omega_{load}
+      \\
+      \omega_{motor} &= n\times \omega_{load} 
+      \end{aligned}
+      $$
+
+      <p> Since angular accelerations are time derivatives of angular velocity, and the gear ratio is independent of time, they have a similar relationship:</p>
+
+    $$
+    \alpha_{motor} = n\times \alpha_{load} 
+    $$
+
+
+      <h2>Torque-Speed Tradeoff</h2>
+
+      <p>
+        Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power (applied to motor shaft) must equal the output power (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity, and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load. Notice how the motor’s torque $\tau_{motor}$ does down as the gear ration $n$ goes up (assuming $\tau_{load}$ is constant), whereas the motor’s angular velocity $\omega_{motor}$ instead goes up as the gear ratio $n$ goes up (assuming $\omega_{load}$ is constant): we refer to this as the torque-speed tradeoff. 
+      </p>
+
+      $$
+      \begin{aligned}
+
+      P = \tau_{load} \times \omega_{load} &= \tau_{motor} \times \omega_{motor}
+      \\
+      \tau_{load} \times \omega_{load}  &= \tau_{motor} \times n \times \omega_{load} \\
+      \tau_{motor} &= \frac{\tau_{load}}{n}
+      \end{aligned}
+      $$
+
+      <h2>Inertia of the Motor and Load</h2>
+
+      <p>
+        The motor and load both consist of distributed mass, which is modeled by their inertial matrix $I_{motor}$ and $I_{load}$ respectively. The inertial matrix determines the relationship between torques and angular accelerations of the shafts. 
+      </p>
+
+      $$
+      \begin{aligned}
+      \tau_{motor} &= I_{motor} \times \alpha_{motor}
+      \\
+      \tau_{load} &= I_{load} \times \alpha_{load}
+      \end{aligned}
+      $$
+
+      <h2>Reflected Inertia</h2>
+
+      <p>
+        Consider a torque being applied at the one end of the transmission, like the motor. If the motor isn’t connected to a transmission yet, then the amount of inertia resisting the torque will be the motor’s inertia $I_{motor}$, which is the first equation above. However, once w the motor is connected to the transmission, the motor’s torque will additionally be resisted by the inertia at the other end of the transmission, in this case the load’s inertia $I_{load}$. This extra inertia experienced at one end of a transmission due to the inertia at the other end is called the reflected inertia, and it can be defined for both ends. </p>
+        <p>
+        How much extra inertia will with motor experience due to the inertia of the load? Since we know that the torques and angular accelerations of the two ends of the transmission are coupled via the gear ratio, we can plug in these relationships into the second equation above that defines the load’s torque, and see how the motor torque and angular acceleration relate to the load’s inertia:
+      </p>
+
+      $$
+      \begin{aligned}
+    \tau_{load} &= I_{load} \times \alpha_{load}
+    \\
+    n \times \tau_{motor} &= I_{load} \times \frac{\alpha_{motor}}{n}
+    \\
+    \tau_{motor} &= \frac{I_{load}}{n^2} \times \alpha_{motor}
+      \end{aligned}
+      $$
+
+    <p>Notice how the inertia due to the load that the motor shaft experiences in order to attain a certain angular acceleration at the motor shaft is $ \frac{I_{load}}{n^2} $. This means that the experienced inertia of the load at the motor is cut quadratically by the gear ratio (which makes sense since there is mechanical advantage that amplifies the torque). We can do a similar derivation to see that $\tau_{load} = I_{motor} \times  n^2 \times \alpha_{motor}$, which means that the inertia of the motor experienced at the load is quadratic in the gear ratio. We now conclude that the total inertia as seen from the motor $I_{motor}^{total}$ and at the load $I_{load}^{total}$ is the sum of the inertia at the one end of the transmission and reflected inertia from the other end: </p>
+    $$
+    \begin{aligned}
+      I_{motor}^{total} &= I_{motor} + \frac{I_{load}}{n^2}
+      \\
+      I_{load}^{total} &= I_{load} + I_{motor} \times n^2
+    \end{aligned}
+    $$
+
+      <p>
+        This is important in robotics for safety and backwards drivability, because if the gear ratio is high, then even motors with small inertias make it challenging to apply torques from the load onto the motor shaft. 
+      </p>
+
+    </article>
+  </div>
+
+  <!-- Dark mode script -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = "🌙 Night Mode";
+    } else {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Night Mode";
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
