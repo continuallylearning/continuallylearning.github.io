@@ -88,7 +88,7 @@
       <h2>Linear Kinematics of the Load Gear</h2>
 
       <p>
-        Similarly, the load shaft is attached to a gear of radius $R_{load}$, and the linear and angular kinematics of the load are related via the radius:
+        Similarly, the load shaft is attached to a gear of radius $R_{load}$, and the linear and angular kinematics of the load are linearly related via the radius $R_{load}$:
       </p>
 
       $$
@@ -114,7 +114,7 @@
       <h2>Gear Ratio and Mechanical Advantage</h2>
 
       <p>
-        We can substitute in the angular velocities for the linear velocities, and see that there is a linear relationship between the angular velocities of the motor and load based on the ratio of radii of the gears, which we call $n = \frac{R_{load}}{R_{motor}}$, the gear ratio and determines the mechanical advantage of the transmission system. Notice that the angular velocities of the motor and shaft differ based on the gear ratio.
+        We can substitute in the angular velocities for the linear velocities, and see that there is a linear relationship between the angular velocities of the motor and load based on the ratio of radii of the gears, called the gear ratio $n = \frac{R_{load}}{R_{motor}}$, which determines the mechanical advantage of the transmission system. Notice that the angular velocities of the motor and shaft differ based on the gear ratio.
       </p>
 
       $$
@@ -140,18 +140,23 @@
       <h2>Torque-Speed Tradeoff</h2>
 
       <p>
-        Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power (applied to motor shaft) must equal the output power (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity, and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load. Notice how the motor’s torque $\tau_{motor}$ does down as the gear ration $n$ goes up (assuming $\tau_{load}$ is constant), whereas the motor’s angular velocity $\omega_{motor}$ instead goes up as the gear ratio $n$ goes up (assuming $\omega_{load}$ is constant): we refer to this as the torque-speed tradeoff. 
+        Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power $P_{in}$ (applied to motor shaft) must equal the output power $P_{out}$ (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity $P = \tau \times \omega$, and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load.
       </p>
 
       $$
       \begin{aligned}
-
-      P = \tau_{load} \times \omega_{load} &= \tau_{motor} \times \omega_{motor}
+      P_{in} &= P_{out}
+      \\
+      \tau_{load} \times \omega_{load} &= \tau_{motor} \times \omega_{motor}
       \\
       \tau_{load} \times \omega_{load}  &= \tau_{motor} \times n \times \omega_{load} \\
       \tau_{motor} &= \frac{\tau_{load}}{n}
       \end{aligned}
       $$
+
+      <p>
+        Notice how the motor’s torque $\tau_{motor}$ does down as the gear ration $n$ goes up (assuming $\tau_{load}$ is constant), whereas the motor’s angular velocity $\omega_{motor}$ instead goes up as the gear ratio $n$ goes up (assuming $\omega_{load}$ is constant): we refer to this as the torque-speed tradeoff. 
+      </p>
 
       <h2>Inertia of the Motor and Load</h2>
 
