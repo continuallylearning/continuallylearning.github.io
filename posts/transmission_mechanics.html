@@ -146,16 +146,16 @@
       <h2>Torque-Speed Tradeoff</h2>
 
       <p>
-        Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power $P_{in}$ (applied to motor shaft) must equal the output power $P_{out}$ (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity $P = \tau \times \omega$, and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load.
+        Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power $P_{in}$ (applied to motor shaft) must equal the output power $P_{out}$ (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity $P = \tau \cdot \omega$ (note that $\tau$ and $\omega$ are both vectors, so we are taking their dot product), and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load.
       </p>
 
       $$
       \begin{aligned}
       P_{in} &= P_{out}
       \\
-      \tau_{load} \times \omega_{load} &= \tau_{motor} \times \omega_{motor}
+      \tau_{motor} \cdot \omega_{motor} &= \tau_{load} \cdot \omega_{load}
       \\
-      \tau_{load} \times \omega_{load}  &= \tau_{motor} \times n \times \omega_{load} \\
+      \tau_{motor} \cdot \omega_{load} \times n  &= \tau_{load} \cdot \omega_{load}  \\
       \tau_{motor} &= \frac{\tau_{load}}{n}
       \end{aligned}
       $$
