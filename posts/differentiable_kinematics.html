@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
-
   <meta charset="utf-8">
-  <title>Jacobians and Differentiable Kinematics</title>
+  <title>Differentiable kinematics, Jacobians, and Jacobian transpose</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Main styles -->
   <link rel="stylesheet" href="../style.css">
+
+  <!-- Prism (code highlighting) -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+  <!-- Add language components as needed -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script> -->
 
   <!-- MathJax -->
   <script>
@@ -24,36 +26,230 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 </head>
+
 <body>
   <div class="container">
     <p><a href="../index.html">&larr; Back to home</a></p>
 
     <article>
+      <!-- Theme toggle -->
       <button id="theme-toggle">🌙 Night Mode</button>
-      <h1>Jacobians and Differentiable Kinematics</h1>
-      <!-- TODO: Set time correctly-->
-      <!-- TODO: Spellcheck-->
-      <p><time datetime="2025-09-20">September 21, 2025</time></p>
 
-      One way to model a robot is as a collection of rigid-body components (called links). At any moment in time, each link has a 3D pose (position and orientation) in space. 
+      <!-- Post header -->
+      <h1>Differentiable kinematics, Jacobians, and Jacobian transpose</h1>
+      <p>
+        <time datetime="{{POST_DATE_ISO}}">January 1st, 2026</time>
+      </p>
 
-  <!-- Script for dark mode -->
+      <!-- ===================== -->
+      <!-- Blog post content -->
+      <!-- ===================== -->
+
+      <h2>Overview</h2>
+      <p>
+        We cover forward kinematics and the Jacobian, relating joint velocities to end-effector velocities with the Jacobian, and forces to torques via the Jacobian transpose.
+
+        All vectors are assumed to be column vectors, transposes are written explicitly $(\cdot)^{T}$, and we refer to "task space" and "Cartesian space" interchangeably.
+      </p>
+
+      <h2>Useful References</h2>
+      <ul>
+        <li><a href="https://studywolf.wordpress.com/2013/09/02/robot-control-jacobians-velocity-and-force/">Studywolf's blog on "ROBOT CONTROL PART 2: JACOBIANS, VELOCITY, AND FORCE" </a></li>
+        <li><a href="https://github.com/ericrosenbrown/robot-hacking/blob/main/robot-arm-fun/jacobian.ipynb">Interactive Python Notebook on Differentiable Kinematics</a></li>
+      </ul>
+
+      <h2>Forward Kinematics</h2>
+
+      <p>
+        We model the joint configuration of the robot at time $t$ as 
+      </p>
+
+      $$
+      q(t) : \mathbb{R} \rightarrow \mathbb{R}^n
+      $$
+
+      <p>
+        where $n$ is the number of joints / number of degrees of freedom (DoF). We denote the task space of the robot (for example, the end-effector position and orientation) at time $t$ as
+      </p>
+
+      $$
+      x(t) : \mathbb{R} \rightarrow \mathbb{R}^m
+      $$
+
+      <p>
+      where $m$ is the task-space / Cartesian space dimensionality. In this post we focus on end-effector position; orientation can be included by extending the task-space vector and Jacobian.</p>
+      
+      <p>The kinematic structure of the robot determines a forward kinematics function $F$</p>
+
+      $$
+      F: \mathbb{R}^{n} \rightarrow \mathbb{R}^m
+      $$
+
+      <p>
+        which maps joint configurations to the task space:
+      </p>
+
+      $$
+      x(t) = F(q(t))
+      $$
+
+      <h2>Differentiable Kinematics and the Jacobian</h2>
+
+      <p>If the forward kinematics function is differentiable with respect to $q$, we can differentiate both sides of the equation with respect to time. Applying the chain rule yields a relationship between joint velocities and Cartesian velocities:</p>
+
+      $$
+      \begin{aligned}
+      x(t) &= F(q(t))
+      \\
+      \frac{dx}{dt}(t) &= \frac{dF(q(t))}{dt} = \frac{dF}{dq}(q(t)) \frac{dq}{dt}(t)
+      \\
+      \dot{x}(t) &= \frac{dF}{dq}(q(t)) \dot{q}(t)
+      \end{aligned}
+      $$
+
+      Where we define the Cartesian and joint velocities as:
+      $$
+      \begin{aligned}
+      \dot{x}(t) &:= \frac{dx}{dt}(t)
+      \\
+      \dot{q}(t) &:= \frac{dq}{dt}(t)
+      \end{aligned}
+      $$
+
+      <p>and the Jacobian matrix as</p>
+
+      $$
+      \begin{aligned}
+      J(q):=\frac{dF}{dq}(q) \in \mathbb{R}^{m \times n}  
+      \end{aligned}
+      $$
+
+      <p>Which lets us rewrite the above differentiable kinematics equations as</p>
+
+      $$
+      \begin{aligned}
+      \dot{x}(t) &=J(q(t)) \dot{q}(t)
+      \end{aligned}
+      $$
+
+      <p>The Jacobian maps joint velocities to Cartesian velocities and depends explicitly on the current joint configuration.</p>
+
+      <h2>Jacobian Transpose relates forces and torques</h2>
+      <p>
+        Torques and forces are also related via the transpose of the Jacobian. To derive this, remember that power $P$ (measured in joules per second) is the rate of energy transfer. Power can be expressed in Cartesian space:
+      </p>
+
+        $$
+        P_{\text{Cartesian}} = F^{T} \dot{x}
+        $$
+
+      <p>where $F \in \mathbb{R}^{m}$ is a constant force vector applied to the end effector, and $\dot{x}$ is the Cartesian velocity as defined above. Notice that $F$ and $\dot{x}$ are both (column) vectors, and since we are taking their dot product, we transpose the force vector $F^{T}$. </p>
+
+      <p>Power can also be expressed in the configuration space, where we replace force $F$ and Cartesian velocity $\dot{x}$, with their joint analogues torque $\tau \in \mathbb{R}^{n}$ and joint velocity $\dot{q}$ respectively (the latter defined above).</p>
+
+        $$
+        P_{\text{joint}} = \tau^{T} \dot{q}
+        $$
+
+      <p>Since $\tau$ and $\dot{q}$ are both (column) vectors and we are taking their dot product, we also transpose the torque $\tau$ as above for force.
+      </p>
+
+      <p>Since total power is conserved between Cartesian and joint spaces, we can equal these together, and then rearrange the equation to relate torque $\tau$ to forces $F$ via the transpose of the Jacobian $J^{T}$. </p>
+
+      $$
+      \begin{aligned}
+      P_{\text{Cartesian}} &= P_{\text{joint}}
+      &\quad& \text{(equal power)} \\
+      
+      F^T \dot{x} &= \tau^{T} \dot{q}
+      &\quad& \text{(substitute power definitions)} \\
+      
+      F^T J \dot{q} &= \tau^{T} \dot{q}
+      &\quad& \text{(since } \dot{x} = J \dot{q}\text{)} \\
+      
+      F^T J &= \tau^{T}
+      &\quad& \text{(holds for all } \dot{q}\text{)} \\
+      
+      J^{T} F &= \tau
+      &\quad& \text{(transpose both sides)}
+      \end{aligned}
+      $$
+
+      <p>Notice how our final relationship $J^{T} F = \tau$ has the force $F$ and torque $\tau$ vectors both as column vectors, as expected.</p>
+
+
+      <h2>2 DoF Revolute Arm Example</h2>
+      <p>
+        In practice, $F$ is often nonlinear and can be quite complex, depending on the robot’s geometry. 
+        For example, consider a serial robot arm composed of two links, with lengths $l_{0}$ and $l_{1}$. The first link is connected to the world via a revolute joint, and the second link is connected to the end of the first link via a revolute joint.
+      </p>
+
+      <p>
+        The end-effectors 2D position $x$ in the plane is given by:
+
+      </p>
+        $$
+        \begin{aligned}
+        x = F(q) &= F([\theta_{0}, \theta_{1}])
+        =
+        \begin{pmatrix}
+        l_0 \cos(\theta_0) + l_1 \cos(\theta_0 + \theta_1) \\
+        l_0 \sin(\theta_0) + l_1 \sin(\theta_0 + \theta_1)
+        \end{pmatrix}
+        \end{aligned}
+        $$
+
+    <p>
+      The Jacobian is obtained by differentiating the forward kinematics with respect to the joint angles:
+    </p>
+      
+      $$
+      J(q) =
+      \frac{\partial x}{\partial q}
+      =
+      \begin{pmatrix}
+      \frac{\partial x}{\partial \theta_0} & \frac{\partial x}{\partial \theta_1} \\
+      \frac{\partial y}{\partial \theta_0} & \frac{\partial y}{\partial \theta_1}
+      \end{pmatrix}
+      $$
+
+      <p>As a result, we know that the Jacobian for this robot arm is:</p>
+      $$
+      J(q) = J([\theta_{0}, \theta_{1}]) =
+      \begin{pmatrix}
+      -\sin(\theta_{0})\,l_{0} - \sin(\theta_{1}+\theta_{0})\,l_{1} &
+      -\sin(\theta_{1}+\theta_{0})\,l_{1} \\
+      \cos(\theta_{0})\,l_{0} + \cos(\theta_{1}+\theta_{0})\,l_{1} &
+      \cos(\theta_{1}+\theta_{0})\,l_{1}
+      \end{pmatrix}
+      $$
+
+      <p>
+        If a Cartesian force \(F = [F_x, F_y]^T\) is applied at the end effector, the corresponding joint torques are:
+      </p>
+        
+      $$
+      \tau = J^T(q)\,F
+      $$
+
+    </article>
+  </div>
+
+  <!-- Dark mode script -->
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
-  
-    // If user has a saved preference, use that
+
     const savedTheme = localStorage.getItem('theme');
-  
+
     if (savedTheme === 'light') {
       body.classList.remove('dark-mode');
       toggleBtn.textContent = "🌙 Night Mode";
     } else {
-      // Default to dark if nothing saved
       body.classList.add('dark-mode');
       toggleBtn.textContent = "☀️ Light Mode";
     }
-  
+
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const isDark = body.classList.contains('dark-mode');
@@ -61,9 +257,5 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   </script>
-
-
-</body> 
-
-
+</body>
 </html>
