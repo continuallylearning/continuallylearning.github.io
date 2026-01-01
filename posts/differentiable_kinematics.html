@@ -48,9 +48,15 @@
       <h2>Overview</h2>
       <p>
         We cover forward kinematics and the Jacobian, relating joint velocities to end-effector velocities with the Jacobian, and forces to torques via the Jacobian transpose.
-
-        All vectors are assumed to be column vectors, transposes are written explicitly $(\cdot)^{T}$, and we refer to "task space" and "Cartesian space" interchangeably.
       </p>
+
+       <p>In this post:</p>
+        <ul>
+          <li>All vectors are assumed to be column vectors.</li>
+          <li>Transposes are written explicitly $(\cdot)^{T}$.</li>
+          <li> $\boxed{\text{boxes denote key equations}}$.</li>
+          <li>"task space" and "Cartesian space" are used interchangeably.</li>
+        </ul>
 
       <h2>Useful References</h2>
       <ul>
@@ -90,7 +96,9 @@
       </p>
 
       $$
+      \boxed{
       x(t) = F(q(t))
+      }
       $$
 
       <h2>Differentiable Kinematics and the Jacobian</h2>
@@ -101,13 +109,13 @@
       \begin{aligned}
       x(t) &= F(q(t))
       \\
-      \frac{dx}{dt}(t) &= \frac{dF(q(t))}{dt} = \frac{dF}{dq}(q(t)) \frac{dq}{dt}(t)
+      \frac{dx}{dt}(t) &= \frac{dF(q(t))}{dt} &\quad& \text{(Derivative w.r.t time)}
       \\
-      \dot{x}(t) &= \frac{dF}{dq}(q(t)) \dot{q}(t)
+      \frac{dx}{dt}(t) &= \frac{dF}{dq}(q(t)) \frac{dq}{dt}(t) &\quad& \text{(Chain rule)}
       \end{aligned}
       $$
 
-      Where we define the Cartesian and joint velocities as:
+      If we define the Cartesian and joint velocities as:
       $$
       \begin{aligned}
       \dot{x}(t) &:= \frac{dx}{dt}(t)
@@ -124,12 +132,14 @@
       \end{aligned}
       $$
 
-      <p>Which lets us rewrite the above differentiable kinematics equations as</p>
+      <p>We can substitute these in to rewrite the above differentiable kinematics equations as</p>
 
       $$
+      \boxed{
       \begin{aligned}
       \dot{x}(t) &=J(q(t)) \dot{q}(t)
       \end{aligned}
+      }
       $$
 
       <p>The Jacobian maps joint velocities to Cartesian velocities and depends explicitly on the current joint configuration.</p>
@@ -168,12 +178,20 @@
       &\quad& \text{(since } \dot{x} = J \dot{q}\text{)} \\
       
       F^T J &= \tau^{T}
-      &\quad& \text{(holds for all } \dot{q}\text{)} \\
-      
-      J^{T} F &= \tau
-      &\quad& \text{(transpose both sides)}
+      &\quad& \text{(holds for all } \dot{q}\text{)}
       \end{aligned}
       $$
+
+      <p>If we transpose both sides, we get</p>
+
+      $$
+      \boxed{
+      \begin{aligned}
+      J^{T} F &= \tau
+      \end{aligned}
+      }
+      $$
+
 
       <p>Notice how our final relationship $J^{T} F = \tau$ has the force $F$ and torque $\tau$ vectors both as column vectors, as expected.</p>
 
@@ -189,6 +207,7 @@
 
       </p>
         $$
+        \boxed{
         \begin{aligned}
         x = F(q) &= F([\theta_{0}, \theta_{1}])
         =
@@ -197,6 +216,7 @@
         l_0 \sin(\theta_0) + l_1 \sin(\theta_0 + \theta_1)
         \end{pmatrix}
         \end{aligned}
+        }
         $$
 
     <p>
@@ -215,6 +235,7 @@
 
       <p>As a result, we know that the Jacobian for this robot arm is:</p>
       $$
+      \boxed{
       J(q) = J([\theta_{0}, \theta_{1}]) =
       \begin{pmatrix}
       -\sin(\theta_{0})\,l_{0} - \sin(\theta_{1}+\theta_{0})\,l_{1} &
@@ -222,6 +243,7 @@
       \cos(\theta_{0})\,l_{0} + \cos(\theta_{1}+\theta_{0})\,l_{1} &
       \cos(\theta_{1}+\theta_{0})\,l_{1}
       \end{pmatrix}
+      }
       $$
 
       <p>
