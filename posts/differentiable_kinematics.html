@@ -203,13 +203,13 @@
       </p>
 
       <p>
-        The end-effectors 2D position $x$ in the plane is given by:
+        The end-effectors 2D position $x = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}$ in the plane is given by:
 
       </p>
         $$
         \boxed{
         \begin{aligned}
-        x = F(q) &= F([\theta_{0}, \theta_{1}])
+        x = F(q) &= F( \begin{bmatrix} \theta_{0} \\ \theta_{1} \end{bmatrix})
         =
         \begin{pmatrix}
         l_0 \cos(\theta_0) + l_1 \cos(\theta_0 + \theta_1) \\
@@ -228,15 +228,15 @@
       \frac{\partial x}{\partial q}
       =
       \begin{pmatrix}
-      \frac{\partial x}{\partial \theta_0} & \frac{\partial x}{\partial \theta_1} \\
-      \frac{\partial y}{\partial \theta_0} & \frac{\partial y}{\partial \theta_1}
+      \frac{\partial x_0}{\partial \theta_0} & \frac{\partial x_0}{\partial \theta_1} \\
+      \frac{\partial x_1}{\partial \theta_0} & \frac{\partial x_1}{\partial \theta_1}
       \end{pmatrix}
       $$
 
       <p>As a result, we know that the Jacobian for this robot arm is:</p>
       $$
       \boxed{
-      J(q) = J([\theta_{0}, \theta_{1}]) =
+      J(q) = J( \begin{bmatrix} \theta_{0} \\ \theta_{1} \end{bmatrix}) =
       \begin{pmatrix}
       -\sin(\theta_{0})\,l_{0} - \sin(\theta_{1}+\theta_{0})\,l_{1} &
       -\sin(\theta_{1}+\theta_{0})\,l_{1} \\
@@ -244,14 +244,6 @@
       \cos(\theta_{1}+\theta_{0})\,l_{1}
       \end{pmatrix}
       }
-      $$
-
-      <p>
-        If a Cartesian force \(F = [F_x, F_y]^T\) is applied at the end effector, the corresponding joint torques are:
-      </p>
-        
-      $$
-      \tau = J^T(q)\,F
       $$
 
     </article>
