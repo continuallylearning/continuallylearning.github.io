@@ -7,4 +7,4 @@ permalink: /
 title: Continually Learning Blog
 ---
 
-Blogs I’ve [(Eric Rosen)](https://eric-rosen.github.io) written to help me contintually learn. Maybe you’ll find them helpful too!
+Blogs and notes I’ve [(Eric Rosen)](https://eric-rosen.github.io) written to help me continually learn. Maybe you’ll find them helpful too!

@@ -37,7 +37,7 @@ preferences:
 # Site Configuration
 title: "Continually Learning Blog"
 heading: "Eric Rosen"
-description: "Blogs I’ve (Eric Rosen) written to help me contintually learn. Maybe you’ll find them helpful too!"
+description: "Blogs and notes I’ve (Eric Rosen) written to help me continually learn. Maybe you’ll find them helpful too!"
 url: "https://continuallylearning.github.io"
 baseurl: ""
 
