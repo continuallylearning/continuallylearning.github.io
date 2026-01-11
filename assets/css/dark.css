@@ -28,3 +28,113 @@ body {
     border-radius: 6px;        /* optional rounded corners */
     color: #f5f5f5;            /* title text color */
   }
+
+/* Inline code only (NOT code blocks) */
+p code,
+li code,
+td code {
+  background: #2a2a2a;
+  color: #e6e6e6;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+  
+  /* Reset code inside blocks */
+  .highlight pre,
+  .highlight code {
+    background: #121b2b;
+    color: inherit;
+    padding: 0;
+  }
+
+/* ============================
+Rouge syntax highlighting
+============================ */
+
+/* Keywords: def, class, return, if */
+.highlight .k {
+    color: #bb86fc;
+  }
+  
+  /* Built-ins / constants */
+  .highlight .nb,
+  .highlight .kc {
+    color: #c792ea;
+  }
+  
+  /* Strings */
+  .highlight .s,
+  .highlight .s1,
+  .highlight .s2 {
+    color: #f28b82;
+  }
+  
+  /* Numbers */
+  .highlight .m {
+    color: #b5cea8;
+  }
+  
+  /* Comments */
+  .highlight .c,
+  .highlight .c1,
+  .highlight .cm {
+    color: #6a9955;
+    font-style: italic;
+  }
+  
+  /* Function names */
+  .highlight .nf {
+    color: #dcdcaa;
+  }
+  
+  /* Class names */
+  .highlight .nc {
+    color: #4ec9b0;
+  }
+  
+  /* Variables / identifiers */
+  .highlight .n {
+    color: #e0e0e0;
+  }
+  
+  /* Operators */
+  .highlight .o {
+    color: #89ddff;
+  }
+  
+  /* Punctuation */
+  .highlight .p {
+    color: #d4d4d4;
+  }
+
+  /* ============================
+   Link colors & interactions
+   ============================ */
+
+/* Default link */
+a:link {
+    color: #bb86fc;
+    text-decoration: underline;
+    text-decoration-color: rgba(187, 134, 252, 0.5);
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+  
+  /* Visited link */
+  a:visited {
+    color: #9a67d3;
+  }
+  
+  /* Hover + keyboard focus */
+  a:hover,
+  a:focus {
+    color: #d7b7ff;
+    text-decoration-color: #d7b7ff;
+    outline: none;
+  }
+  
+  /* Active (while clicking) */
+  a:active {
+    color: #ffffff;
+  }
+  
