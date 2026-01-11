@@ -29,9 +29,7 @@
   
   // Initial theme
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    setTheme(savedTheme);
-  }
+  setTheme(savedTheme || 'dark');
   
   themeToggle.addEventListener('click', function() {
     root.classList.add('theme-transition');
