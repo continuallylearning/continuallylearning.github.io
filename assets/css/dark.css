@@ -138,37 +138,3 @@ a:link {
     color: #ffffff;
   }
   
-  /* Mobile nav dropdown button (iOS Safari) */
-.site-nav summary {
-    background-color: #2a2a2a;   /* box color */
-    color: #f5f5f5;              /* text color */
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    border: 1px solid #444;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  /* Remove default iOS marker styling */
-  .site-nav summary::-webkit-details-marker {
-    display: none;
-  }
-
-  /* Dropdown menu background */
-.site-nav details[open] .trigger {
-    background-color: #1f1f1f;
-    border-radius: 6px;
-    margin-top: 0.5rem;
-    padding: 0.5rem 0;
-  }
-  
-  /* Dropdown links */
-  .site-nav .trigger a {
-    color: #e0e0e0;
-  }
-  
-  /* Hover / tap state */
-  .site-nav .trigger a:hover {
-    background-color: #333;
-    color: #ffffff;
-  }
