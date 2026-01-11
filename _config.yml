@@ -20,18 +20,28 @@
 
 title: Continually Learning Blog
 email: eric.andrew.rosen@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Blogs I've (Eric Rosen) written to help me contintually learn.
-  Maybe you'll find them helpful too!
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://continuallylearning.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+description: Blogs I've [(Eric Rosen)](eric-rosen.github.io) written to help me contintually learn. Maybe you'll find them helpful too!
 twitter_username: _ericrosen
 github_username: eric-rosen
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://continuallylearning.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+
 
 # Build settings
-theme: minima
+# theme: minima
+# plugins:
+#   - jekyll-feed
+
+# theme: minima  <-- Comment this out
+remote_theme: jekyll/minima
+
 plugins:
-  - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+minima:
+  skin: dark  # This is the magic line
+  
 
 # Exclude from processing.
 # The following items will not be processed, by default.
