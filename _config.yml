@@ -35,10 +35,10 @@ preferences:
     enabled: true
 
 # Site Configuration
-title: "Your Site Title"
-heading: "Your Name"
-description: "A brief description of your site"
-url: "https://yoursite.com"
+title: "Continually Learning Blog"
+heading: "Eric Rosen"
+description: "Blogs I’ve (Eric Rosen) written to help me contintually learn. Maybe you’ll find them helpful too!"
+url: "https://continuallylearning.github.io"
 baseurl: ""
 
 # Asset Configuration
@@ -57,7 +57,7 @@ menu:
 
 # Footer
 footer:
-  copyright: "© 2024 Your Name. Contents under CC-BY-NC"
+#  copyright: "© 2024 Your Name. Contents under CC-BY-NC"
   credits:
     enabled: true
     url: "/credits"
