@@ -1,7 +1,7 @@
 ---
 title: Managing Multiple GitHub Accounts with SSH Keys
 feed: show
-date: 2026-01-11T15:41:00
+date: 2025-12-27
 ---
 I maintain multiple GitHub accounts on the same machine:
 

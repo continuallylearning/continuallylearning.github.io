@@ -1,6 +1,6 @@
 ---
 title: Ratios and Proportions
-date: 2025-09-20
+date: 2025-09-23
 feed: show
 ---
 According to [Wikipedia](https://en.wikipedia.org/wiki/Proportion_\(mathematics\)), a proportion is a mathematical statement expressing the equality of two ratios, and a [ratio](https://en.wikipedia.org/wiki/Ratio) shows how many times one number contains another. 

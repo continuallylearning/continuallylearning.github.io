@@ -1,5 +1,5 @@
 ---
-title: "Flux, Flow, and the Continuity Equation"
+title: Flux, Flow, and the Continuity Equation
 feed: show
 date: 2025-09-20
 ---
