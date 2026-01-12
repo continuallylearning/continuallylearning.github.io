@@ -98,7 +98,7 @@ privatelinks:
   msg: "This note hasn't been published yet."
 
 # Math rendering
-katex: false
+katex: true
 
 kramdown:                                                                                      
     math_engine: null   
