@@ -100,8 +100,8 @@ privatelinks:
 # Math rendering
 katex: true
 
-kramdown:                                                                                      
-    math_engine: null   
+kramdown:
+  math_engine: null
 
 # Exclude from processing
 exclude:
