@@ -89,6 +89,9 @@
             <!--- Notes Layout-->
             {%- if page.content-type == "notes" -%}
                 <h1>{{page.title}}</h1>
+                {%- if page.date -%}
+                <p class="note-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+                {%- endif -%}
                 {%- include Content.html -%}
                 {%- if site.preferences.backlinks.enabled -%}
                 {%- include Backlinks.html -%}
