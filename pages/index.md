@@ -8,3 +8,5 @@ title: Continually Learning Blog
 ---
 
 Blogs and notes I’ve [(Eric Rosen)](https://eric-rosen.github.io) written to help me continually learn. Maybe you’ll find them helpful too!
+
+You can type in the search box below to see if there is anything connected to something you're interested in. Or, just choose a random note or blog and follow a rabbit hole!
