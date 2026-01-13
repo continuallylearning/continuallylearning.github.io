@@ -1,6 +1,5 @@
 ---
-title: Welcome to Quartz
+title: Welcome to Continually Learning!
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+These are blogs and notes <a href="https://eric-rosen.github.io">I've (Eric Rosen)</a> written to help me continually learn. Maybe you'll find them helpful too!
