@@ -1,32 +1,11 @@
-# Dependencies
-node_modules/
-
-# Quartz build output
-public/
-.quartz-cache/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Editor/IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS files
 .DS_Store
-Thumbs.db
-
-# Logs
-*.log
-npm-debug.log*
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Profiling output
-prof/
+.gitignore
+node_modules
+public
+prof
+tsconfig.tsbuildinfo
+.obsidian
+.quartz-cache
+private/
+.replit
+replit.nix
