@@ -11,7 +11,17 @@ There are a few ways to get started:
 3. Go to the `Search bar`, which lets you find references to anything I've written about, and type in something that is interesting to you!
 
 # What are some good blogs to get started?
-Here are some fun ones:
-- [Reinforcement Learning 101](Reinforcement%20Learning/Reinforcement%20Learning%20101.md)
-- [Reflected Inertia](Robotics/Reflected%20Inertia.md)
-- [Ratios and Proportions](Math/Ratios%20and%20Proportions.md)
+Here are some fun ones based on topics:
+- For `Robotics`: 
+	- [Reflected Inertia](Robotics/Reflected%20Inertia.md)
+	- [Differentiable kinematics](Robotics/Differentiable%20kinematics.md)
+- For `Reinforcement Learning`:
+	- [Reinforcement Learning 101](Reinforcement%20Learning/Reinforcement%20Learning%20101.md)
+	- [Advantage](Reinforcement%20Learning/Advantage.md)
+- For `Physics`: 
+	- [Centripetal acceleration](Physics/Centripetal%20acceleration.md)
+	- [Continuity equation](Physics/Continuity%20equation.md)
+- For `Math`: 
+	- [Ratios and Proportions](Math/Ratios%20and%20Proportions.md)
+- For `Programming`:
+	- [Multiple GitHub accounts](Programming/Multiple%20GitHub%20accounts.md)
