@@ -10,6 +10,8 @@ There are a few ways to get started:
 2. Check out the `Graph View`, which shows the connections between posts, and click on one that looks interesting to you!
 3. Go to the `Search bar`, which lets you find references to anything I've written about, and type in something that is interesting to you!
 
+# What do the tags on each post mean?
+- `#clwip`: This post is an active work-in-progress. It is subject to change and may not be complete.
 # What are some good blogs to get started?
 Here are some fun ones based on topics:
 - For `Robotics`: 
