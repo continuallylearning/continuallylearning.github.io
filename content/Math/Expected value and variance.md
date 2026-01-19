@@ -22,7 +22,7 @@ $$
 \arg \min_{\hat{x}} \sum_{i=1}^n ( x_i - \hat{x})^2
 $$
 
-It turns out that the solution is the average, $\hat{x} = \bar{x}$, which is related to expected values as shown above.. To prove this, we can find a local minimum by taking the derivative of the above equation w.r.t $\hat{x}$ and set it equal to 0, and then solve for $\hat{x}$:
+It turns out that the solution is the average, $\hat{x} = \bar{x}$, which is related to expected values as shown above. To prove this, we can find a local minimum by taking the derivative of the above equation w.r.t $\hat{x}$ and set it equal to 0, and then solve for $\hat{x}$:
 
 $$
 \begin{aligned}

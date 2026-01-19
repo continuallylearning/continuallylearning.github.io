@@ -3,6 +3,39 @@ tags:
 feed: show
 date: 2026-01-14
 ---
+
+# Logical operators 
+>[!info] 
+> Logical operators in LaTeX typically are `l[name]`, like `\lnot`, `\land`, etc. 
+
+```
+$$
+\lnot (A \land B) \iff \lnot B \lor \lnot A \quad \text{(De Morgan’s law)}
+$$
+```
+$$
+\lnot (A \land B) \iff \lnot B \lor \lnot A \quad \text{(De Morgan’s law)}
+$$
+# Mid for probabilities and sets
+```
+$$
+Pr(x \mid y) = \frac{Pr(y \mid x) Pr(x)}{Pr(y)} \quad \text{(Bayes theorem)}
+$$
+```
+
+$$
+Pr(x \mid y) = \frac{Pr(y \mid x) Pr(x)}{Pr(y)} \quad \text{(Bayes theorem)}
+$$
+
+```
+$$
+X = \{(y,z) \mid y \in Y, z \in Z \} \quad \text{(Cartesian Product)}
+$$
+```
+
+$$
+X = \{(y,z) \mid y \in Y, z \in Z \} \quad \text{(Cartesian Product)}
+$$
 # Norm of matrix or vector 
 
 

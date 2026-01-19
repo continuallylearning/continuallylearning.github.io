@@ -98,7 +98,7 @@ Notice how the motor's torque $\tau_{motor}$ goes down as the gear ratio $n$ goe
 
 ## Inertia of the Motor and Load
 
-The motor and load both consist of distributed mass, which is modeled by their inertial matrix $I_{motor}$ and $I_{load}$ respectively. The inertial matrix determines the relationship between torques and angular accelerations of the shafts.
+The motor and load both consist of distributed mass, which is modeled by their moment of inertia $I_{motor}$ and $I_{load}$ respectively. The moment of inertia (for 1D rotation in this case, a scalar, determines the relationship between torques and angular accelerations of the shafts about their axes:
 
 $$
 \begin{aligned}
