@@ -49,17 +49,19 @@ The computational graph makes it clear how to calculate $\nabla_{\theta} L$: We 
 We discuss two options for handling this: the REINFORCE estimator, and the reparameterization trick.
 # REINFORCE Estimator
 The REINFORCE estimator uses the log-derivative trick to rewrite $\nabla_{\theta} L(\theta)$ as an expectation that we can calculate directly:
+
 $$
 \begin{align}
 \nabla_{\theta} L(\theta) &= \nabla_{\theta} \mathbb{E}_{x \sim P_\theta}[f(x)] \\
- &= \nabla_{\theta} \sum_{x} P_{\theta}(x) f(x) \quad \text{(Def. of Expectation)} \\
-  &= \sum_{x} \nabla_{\theta}( P_{\theta}(x) f(x)) \quad \text{(Linearity of Expectation)} \\
+&= \nabla_{\theta} \sum_{x} P_{\theta}(x) f(x) \quad \text{(Def. of Expectation)} \\
+&= \sum_{x} \nabla_{\theta}( P_{\theta}(x) f(x)) \quad \text{(Linearity of Expectation)} \\
 &= \sum_{x}   f(x) \nabla_{\theta}P_{\theta}(x) + P_\theta(x)\nabla_{\theta}f(x) \quad \text{(Product rule)} \\
 &= \sum_{x} f(x) \nabla_{\theta}P_{\theta}(x)  \quad (f \text{ does not depend on } \theta) \\
 &= \sum_{x} f(x) P_\theta(x)\nabla_{\theta}\log P_{\theta}(x)  \quad (\text{Log-derivative trick}) \\
 &= \mathbb{E}_{x \sim P_{\theta}}[f(x) \nabla_{\theta}\log P_\theta(x)]
 \end{align}
 $$
+
 This final expression is called the REINFORCE estimator for $\nabla_{\theta} L(\theta)$. Similar to how we approximated $L(\theta)$, we can approximate this expectation by sampling $X \sim P_{\theta}$ and averaging $f(x) \nabla_{\theta}\log P_\theta(x)$. One issue with this estimator is that it has high variance since it involves multiplying $f(x)$ and  $\nabla_{\theta}\log P_\theta(x)$. 
 
 Instead of using the high-variance REINFORCE estimator, we can use the reparameterization trick.
