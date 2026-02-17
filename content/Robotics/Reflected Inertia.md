@@ -5,7 +5,7 @@ feed: show
 ---
 ## Overview of a Transmission System
 
-A transmission system couples the motions of an input shaft (here called the motor) and an output shaft (here called the load). The motor and load shafts are connected via the transmission mechanism (e.g: a gearbox), which has a mechanical advantage/gear ratio that determines how angular velocities, torques and perceived inertias relate between both sides of the transmissions. Good resources for further reading are:
+A transmission system couples the motions of an input shaft (here called the motor shaft) and an output shaft (here called the load shaft). The motor and load shafts are connected via the transmission mechanism (e.g., a gearbox), which has a mechanical advantage/gear ratio that determines how angular velocities, torques and perceived inertias relate between both sides of the transmissions. Good resources for further reading are:
 
 - [Russ Tedrake's course notes](https://manipulation.csail.mit.edu/robot.html)
 - [The basics of motion control by John Mazurkiewicz](https://fab.cba.mit.edu/classes/961.04/topics/motion_control2.pdf)
@@ -82,7 +82,7 @@ $$
 
 ## Torque-Speed Tradeoff
 
-Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power $P_{in}$ (applied to motor shaft) must equal the output power $P_{out}$ (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity $P = \tau \cdot \omega$ (note that $\tau$ and $\omega$ are both vectors, so we are taking their dot product), and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load.
+Assuming power supplied to the motor shaft via a torque is perfectly conserved when transferred to the load shaft, then the input power $P_{in}$ (applied to motor shaft) must equal the output power $P_{out}$ (applied to load). We can leverage the fact that power is equal to the product of torque and angular velocity $P = \tau \cdot \omega$ , and substitute in the relationship between angular velocities to deduce a relationship between the torques of the motor and load.
 
 $$
 \begin{aligned}
@@ -98,7 +98,7 @@ Notice how the motor's torque $\tau_{motor}$ goes down as the gear ratio $n$ goe
 
 ## Inertia of the Motor and Load
 
-The motor and load both consist of distributed mass, which is modeled by their moment of inertia $I_{motor}$ and $I_{load}$ respectively. The moment of inertia (for 1D rotation in this case, a scalar, determines the relationship between torques and angular accelerations of the shafts about their axes:
+The motor and load both consist of distributed mass, which is modeled by their moment of inertia $I_{motor}$ and $I_{load}$ respectively. The moment of inertia (for 1D rotation in this case, a scalar), determines the relationship between torques and angular accelerations of the shafts about their axes:
 
 $$
 \begin{aligned}
@@ -121,7 +121,7 @@ n \times \tau_{motor} &= I_{load} \times \frac{\alpha_{motor}}{n} \\
 \end{aligned}
 $$
 
-Notice how the inertia due to the load that the motor shaft experiences in order to attain a certain angular acceleration at the motor shaft is $\frac{I_{load}}{n^2}$. This means that the experienced inertia of the load at the motor is cut quadratically by the gear ratio (which makes sense since there is mechanical advantage that amplifies the torque). We can do a similar derivation to see that $\tau_{load} = I_{motor} \times n^2 \times \alpha_{motor}$, which means that the inertia of the motor experienced at the load is quadratic in the gear ratio. We now conclude that the total inertia as seen from the motor $I_{motor}^{total}$ and at the load $I_{load}^{total}$ is the sum of the inertia at the one end of the transmission and reflected inertia from the other end:
+Notice how the inertia due to the load that the motor shaft experiences in order to attain a certain angular acceleration at the motor shaft is $\frac{I_{load}}{n^2}$. This means that the experienced inertia of the load at the motor is cut quadratically by the gear ratio (which makes sense since there is mechanical advantage that amplifies the torque). We can do a similar derivation to see that $\tau_{load} = I_{motor} \times n^2 \times \alpha_{load}$, which means that the inertia of the motor experienced at the load is quadratic in the gear ratio. We now conclude that the total inertia as seen from the motor $I_{motor}^{total}$ and at the load $I_{load}^{total}$ is the sum of the inertia at the one end of the transmission and reflected inertia from the other end:
 
 $$
 \begin{aligned}

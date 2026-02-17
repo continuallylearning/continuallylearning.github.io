@@ -3,7 +3,6 @@ title: Value function
 feed: show
 date: 2025-09-26
 tags:
-  - clwip
 ---
 ## Prerequisites
 - [Reinforcement Learning 101](Reinforcement%20Learning/Reinforcement%20Learning%20101.md)

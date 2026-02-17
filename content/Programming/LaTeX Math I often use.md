@@ -4,6 +4,17 @@ feed: show
 date: 2026-01-14
 ---
 
+# Vectors
+>[!info] 
+>> use `\vec{}` to denote vectors, as opposed to scalars. Useful for vector fields vs. scalar fields too.
+>
+
+$$
+\begin{aligned}
+\vec{F} &= k \vec{x} && \text{(Hooke's law)} \\
+
+\end{aligned} 
+$$
 # Logical operators 
 >[!info] 
 > Logical operators in LaTeX typically are `l[name]`, like `\lnot`, `\land`, etc. 
@@ -41,32 +52,35 @@ $$
 
 ```
 $$
-\| x \|^2
+\| x \| = ()
 $$
 ```
 
 $$
-\| x \|^2
+\begin{aligned}
+\| x \| := \sqrt{(x \cdot x)} && \text{(Euclidean norm)}
+\end{aligned}
 $$
 # Multi-line equations
 
 >[!info]
->> use `&` before operator (e.g., `=`) to make equations line up at them, and `\\` for new lines. `quad` provides space between math on the same line, which can be useful for putting `\text{}` on the right side
+>> use the `\begin{aligned}` and `\end{aligned}` to make multi-line equations, where each line is separated by `\\`. 
+>> use `&` before operator (e.g., `=`) to make equations line up at them, and `\\` for new lines. You can then use `&&` to make `\text{}` or other math notes line up on the right side.
 
 ```
 $$
 \begin{aligned}
-1 + 2 + 3 &= 7 - 1 \quad \text{(This is true)} \\
-10 &= 10 \quad \text{(Also true!)}
-\end{aligned}
+\vec{E}(\vec{x}) &= \int_{V} \frac{\rho(\vec{r})\widehat{(\vec{x} - \vec{r})}}{4 \pi \epsilon_0\mid \vec{x} - \vec{r} \mid ^2} d\tau && \text{(Electric field from charge distribution)} \\
+\vec{E} &= - \nabla V && \text{(Electric field from electric potential )} \\
+\end{aligned} 
 $$
 ```
 
 $$
 \begin{aligned}
-1 + 2 + 3 &= 7 - 1 \quad \text{(This is true)} \\
-10 &= 10 \quad \text{(Also true!)}
-\end{aligned}
+\vec{E}(\vec{x}) &= \int_{V} \frac{\rho(\vec{r})\widehat{(\vec{x} - \vec{r})}}{4 \pi \epsilon_0\mid \vec{x} - \vec{r} \mid ^2} d\tau && \text{(Electric field from charge distribution)} \\
+\vec{E} &= - \nabla V && \text{(Electric field from electric potential )} \\
+\end{aligned} 
 $$
 
 # Making column vectors and row vectors

@@ -33,3 +33,20 @@ Version control and syncing are two important and distinct processes for making 
 
 >[!example]
 >> I use Obsidian Sync to sync my vault content across my devices (laptop, desktop and phone). 
+
+# Why use both GitHub and Obsidian Sync?
+
+>[!summary]
+>> I started with using GitHub for both version control and syncing, then only added in sync later to make phone integration easier. 
+
+
+You can use either GitHub or Obsidian sync to do both version control and syncing. So why use both?
+
+I started with just GitHub for version control because
+1.  I am very familiar with it (I use it all the time for all my work and personal coding projects)
+2. I absolutely love my notes rendering in GitHub in a similar way to my website. You can see one of my math blog posts here: without doing anything besides using GitHub I can effectively host my content there too. Makes it super easy to be anywhere, even without obsidian app, to see my past content and commit history: https://github.com/continuallylearning/continuallylearning.github.io/blob/v4/content/Math/Reparameterization%20trick.md
+3. I love all the features of GitHub (GitHub actions, .gitignore, branches, rebasing, and merging). I haven’t checked how fully featured sync is compared to GitHub.
+4. While I hope Obsidian Sync is around forever, if it goes down, I don’t want to lose my history. I am confident that GitHub will be around for a while. I am a big fan of file over app philosophy / having complete control over my content and version history, and I have my repository local so I always own my versioning. 
+5. I haven’t checked Obsidian sync, but I love having control over what files I commit, and seeing diffs all the time for me to control manually. 
+
+Pulling from GitHub across devices was actually my original syncing method. It worked fine for my desktop and laptop, but for iPhone, it’s more annoying to set up and use GitHub. So since obsidian sync makes it seamless on my phone + I like supporting the developers, I decided to use sync just for that.

@@ -1,6 +1,5 @@
 ---
 tags:
-  - "#clblogs"
   - clwip
 ---
 # Motivation
@@ -44,7 +43,7 @@ The shape and style of nodes/edges define their semantics:
 - Full arrows show the direction data flows for generating a sample $Y$ based on parameters $\theta$.
 - The dashed arrows show the direction that gradients flow when differentiating the output $Y$ with respect to the parameters $\theta$.
 
-The computational graph makes it clear how to calculate $\nabla_{\theta} L$: We simple accumulate the gradients along the dashed arrows. However, an issue arises since we need to differentiate through a stochastic function $P_{\theta}$, which is not well-defined. 
+The computational graph makes it clear how to calculate $\nabla_{\theta} L$: We simply accumulate the gradients along the dashed arrows. However, an issue arises since we need to differentiate through a stochastic function $P_{\theta}$, which is not well-defined. 
 
 We discuss two options for handling this: the REINFORCE estimator, and the reparameterization trick.
 # REINFORCE Estimator
@@ -54,7 +53,7 @@ $$
 \begin{align}
 \nabla_{\theta} L(\theta) &= \nabla_{\theta} \mathbb{E}_{x \sim P_\theta}[f(x)] \\
 &= \nabla_{\theta} \sum_{x} P_{\theta}(x) f(x) \quad \text{(Def. of Expectation)} \\
-&= \sum_{x} \nabla_{\theta}( P_{\theta}(x) f(x)) \quad \text{(Linearity of Expectation)} \\
+&= \sum_{x} \nabla_{\theta}( P_{\theta}(x) f(x)) \quad \text{(Linearity of differentiation)} \\
 &= \sum_{x}   f(x) \nabla_{\theta}P_{\theta}(x) + P_\theta(x)\nabla_{\theta}f(x) \quad \text{(Product rule)} \\
 &= \sum_{x} f(x) \nabla_{\theta}P_{\theta}(x)  \quad (f \text{ does not depend on } \theta) \\
 &= \sum_{x} f(x) P_\theta(x)\nabla_{\theta}\log P_{\theta}(x)  \quad (\text{Log-derivative trick}) \\
@@ -67,5 +66,7 @@ This final expression is called the REINFORCE estimator for $\nabla_{\theta} L(\
 Instead of using the high-variance REINFORCE estimator, we can use the reparameterization trick.
 
 # Reparameterization trick
+
+>[!todo]
 # References
 - [REINFORCE vs Reparameterization Trick](https://stillbreeze.github.io/REINFORCE-vs-Reparameterization-trick/)

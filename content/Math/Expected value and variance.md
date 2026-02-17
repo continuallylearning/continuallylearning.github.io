@@ -28,15 +28,33 @@ It turns out that the solution is the average, $\hat{x} = \bar{x}$, which is rel
 
 $$
 \begin{aligned}
-0 &= \frac{d}{d\hat{x}}\sum_{i=1}^n ( x_i - \hat{x})^2  \quad \text{(Equation for local minimum)} \\
-0&= \sum_{i=1}^n \frac{d}{d\hat{x}}( x_i - \hat{x})^2 \quad \text{(Linearity of derivative)} \\
-0&= \sum_{i=1}^n 2(x_i - \hat{x})(-1) \quad \text{(Chain rule)} \\
-0&= \sum_{i=1}^n (x_i - \hat{x}) \quad \text{(Divide by 2 and -1 )} \\
-0&= \sum_{i=1}^n x_i - \sum_{i=1}^n\hat{x} \quad \text{(Separate out summation)} \\
-0&= \sum_{i=1}^n x_i - n\hat{x} \quad \text{(xhat is a constant)} \\
-\hat{x}&= \sum_{i=1}^n x_i \frac{1}{n} \quad \text{(move to other side and divide by n)} \\
-\hat{x} &= \bar{x} \quad \text{(Substitute in defintion of average)}
+0 &= \frac{d}{d\hat{x}}\sum_{i=1}^n ( x_i - \hat{x})^2  && \text{(Equation for local minimum)} \\
+0&= \sum_{i=1}^n \frac{d}{d\hat{x}}( x_i - \hat{x})^2 && \text{(Linearity of derivative)} \\
+0&= \sum_{i=1}^n 2(x_i - \hat{x})(-1) && \text{(Chain rule)} \\
+0&= \sum_{i=1}^n (x_i - \hat{x}) && \text{(Divide by 2 and -1 )} \\
+0&= \sum_{i=1}^n x_i - \sum_{i=1}^n\hat{x} && \text{(Separate out summation)} \\
+0&= \sum_{i=1}^n x_i - n\hat{x} && \text{(}\hat{x} \text{ is a constant)} \\
+\hat{x}&= \sum_{i=1}^n x_i \frac{1}{n} && \text{(move to other side and divide by n)} \\
+\hat{x} &= \bar{x} && \text{(Substitute in definition of average)}
 \end{aligned}
+$$
+
+# Variance
+Variance of a random variable $X$ is average squared distance from samples of the random variable and its expected value:
+
+$$
+\begin{aligned}
+Var(X) &:= \mathbb{E}_{X \sim P}[(X - \mathbb{E}[X])^2] && \text{(Definition of Variance)}\\
+&= \mathbb{E}_{X \sim P}[X^2 - 2X\mathbb{E}[X] +  \mathbb{E}[X]^2] \\
+&= \mathbb{E}_{X \sim P}[X^2] - 2\mathbb{E}_{X \sim P}[X\mathbb{E}[X]] +  \mathbb{E}[X]^2 && \text{(Linearity of Expectation)}\\
+
+\end{aligned}
+$$
+
+Standard deviation is the square root of variance:
+
+$$
+std(X) = \sqrt{Var(X)}
 $$
 
 >[!todo]
