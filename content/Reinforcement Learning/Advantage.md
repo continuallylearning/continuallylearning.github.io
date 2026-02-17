@@ -3,7 +3,6 @@ title: Advantage
 date: 2025-09-27
 feed: show
 tags:
-  - clblogs
 ---
 In Reinforcement Learning (RL), we define the advantage $A^\pi(s,a)$ of a policy $\pi$ as:
 
