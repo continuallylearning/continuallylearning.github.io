@@ -10,7 +10,7 @@ $$
 A^\pi(s,a) = Q^\pi(s,a) - V^\pi(s)
 $$
 
-One way to interpret the advantage is as the relative value of taking a certain action $a$ from a state $s$, and then following the policy (this is exactly what $Q^\pi(s,a)$ represents), as compared to the expected value of following the policy from state $s$ (this is exactly what the [Value function](Reinforcement%20Learning/Value%20function.md) $V^\pi(s)$ represents).
+One way to interpret the advantage is as the relative value of taking a certain action $a$ from a state $s$, and then following the policy (this is exactly what $Q^\pi(s,a)$ represents), as compared to the expected value of following the policy from state $s$ (this is exactly what the [Value function](Value%20function.md) $V^\pi(s)$ represents).
 
 ## Advantage is equal to expected TD error
 

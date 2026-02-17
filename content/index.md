@@ -19,9 +19,9 @@ Here are some fun ones based on topics:
 - For [Robotics](Robotics): 
 	- [Reflected Inertia](Robotics/Reflected%20Inertia.md)
 	- [Differentiable kinematics](Robotics/Differentiable%20kinematics.md)
-- For [Reinforcement Learning](Reinforcement Learning):
-	- [Reinforcement Learning 101](Reinforcement%20Learning/Reinforcement%20Learning%20101.md)
-	- [Advantage](Reinforcement%20Learning/Advantage.md)
+- For [Reinforcement-Learning](Reinforcement-Learning):
+	- [Reinforcement Learning 101](Reinforcement%20Learning%20101.md)
+	- [Advantage](Advantage.md)
 - For [Physics](Physics): 
 	- [Centripetal acceleration](Physics/Centripetal%20acceleration.md)
 	- [Continuity equation](Physics/Continuity%20equation.md)

@@ -80,7 +80,7 @@ $$
 
 - We've done all the work to define all the terms in this optimization problem. Note that $Pr(\tau)$ depends on $\pi$, $T$ and $R$, while $G(\tau)$ just depends on $\gamma$ (Confirm this by looking at the definition of $G(\tau)$ and $Pr(\tau)$ and see what is required to compute them given you have $\tau$ already). To emphasize this, we may write $Pr_{\pi,T,R}(\tau)$ to emphasize the probability depends on the policy, which we leverage shortly.
 - We call $\pi^*$ the optimal policy, and "solving the RL problem" amounts to finding the optimal policy (or at least getting as "close" to optimal as possible). The optimal policy does not need to be unique (i.e: there may be multiple optimal policies for a single MDP).
-In order to find optimal policies, it helps to understand the CDE rewards of a policy from different states. We formalize this with a [Value function](Reinforcement%20Learning/Value%20function.md) $V^\pi(s)$.
+In order to find optimal policies, it helps to understand the CDE rewards of a policy from different states. We formalize this with a [Value function](Value%20function.md) $V^\pi(s)$.
 
 
 

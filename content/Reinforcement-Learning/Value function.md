@@ -5,7 +5,7 @@ date: 2025-09-26
 tags:
 ---
 ## Prerequisites
-- [Reinforcement Learning 101](Reinforcement%20Learning/Reinforcement%20Learning%20101.md)
+- [Reinforcement Learning 101](Reinforcement%20Learning%20101.md)
 ## Value functions represent CDE rewards from a state
 
 The value function $V^\pi(s)$ is defined as the CDE rewards conditioned on running the policy $\pi$ from a given state $s$:
