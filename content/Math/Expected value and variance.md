@@ -5,13 +5,13 @@ feed: show
 date: 2026-01-13
 ---
 # Expected value
-The expected value of a random variable $X$ is the sum of all the values it can take on, weighted by their probability:
+The expected value of a random variable $X$ is the sum of all the values it can take on, weighted by their probability (i.e., a weighted average):
 
 $$
 \mathbb{E}_{x \sim \text{Pr}(X)}[x] := \sum_{x \in X} x \text{Pr}(x)  
 $$
 
- If we have a set of $n$ numbers $X = \{x_i\}_{i=1}^{n}$, and assign them equal probability $\text{Pr}(x_i) = \frac{1}{n}$, then the expected value is equal to the average $\bar{x}$:
+ If we have a set of $n$ numbers $X = \{x_i\}_{i=1}^{n}$, and assign them equal probability $\text{Pr}(x_i) = \frac{1}{n}$, then the expected value is equal to the standard average $\bar{x}$ which sums all the numbers in $X$ and divides by its size:
  
  $$
  \mathbb{E}_{x \sim \text{Pr}(X)}[x] = \sum_{x \in X} x \frac{1}{n} = \frac{\sum_{i} x_i}{n} := \bar{x}
@@ -44,13 +44,16 @@ Variance of a random variable $X$ is average squared distance from samples of th
 
 $$
 \begin{aligned}
-Var(X) &:= \mathbb{E}_{X \sim P}[(X - \mathbb{E}[X])^2] && \text{(Definition of Variance)}\\
+Var(X) &:= \mathbb{E}_{X \sim P}[(X - \mathbb{E}_{X \sim P}[X])^2] && \text{(Definition of variance)}\\
 &= \mathbb{E}_{X \sim P}[X^2 - 2X\mathbb{E}[X] +  \mathbb{E}[X]^2] \\
-&= \mathbb{E}_{X \sim P}[X^2] - 2\mathbb{E}_{X \sim P}[X\mathbb{E}[X]] +  \mathbb{E}[X]^2 && \text{(Linearity of Expectation)}\\
-
+&= \mathbb{E}_{X \sim P}[X^2] - 2\mathbb{E}_{X \sim P}[X\mathbb{E}[X]] +  \mathbb{E}[X]^2 && \text{(Linearity of Expectation)} \\
+&= \mathbb{E}_{X \sim P}[X^2] - 2(\mathbb{E}_{X \sim P}[X])\mathbb{E}_{X \sim P}[X] +  \mathbb{E}[X]^2 && \text{(}\mathbb{E}_{X \sim P}[X] \text{ is a constant)} \\
+&= \mathbb{E}_{X \sim P}[X^2] - 2\mathbb{E}_{X \sim P}[X]^2 +  \mathbb{E}[X]^2  \\
+&= \mathbb{E}_{X \sim P}[X^2] - \mathbb{E}_{X \sim P}[X]^2 && \text{(Another definition of variance)}\\
 \end{aligned}
 $$
 
+## Standard deviation 
 Standard deviation is the square root of variance:
 
 $$
@@ -59,8 +62,6 @@ $$
 
 >[!todo]
 >- Do similar derivation for conditional expectations.
->- write down standard definition of variance 
->- Prove it equals `E[x^2] - E[x]^2`
 >- Covariance
 >- Covariance matrix
 >- Pearson correlation coefficient
