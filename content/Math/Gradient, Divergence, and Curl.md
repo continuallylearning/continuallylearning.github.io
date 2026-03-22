@@ -2,31 +2,18 @@
 tags:
 feed: show
 date: 2026-01-14
+aliases:
+  - divergence
+  - gradient
+  - curl
 ---
 # Prerequisites
+- [Scalar Field and Vector Field](Scalar%20Field%20and%20Vector%20Field.md)
 - [Fundamental Theorem of Calculus](Fundamental%20Theorem%20of%20Calculus.md)
 -  [[Divergence Theorem]]
 - [Green's Theorem](Green's%20Theorem.md)
 
-# Vector Fields and Scalar Fields
->[!summary]
->> Vector fields are functions that map vectors to other vectors. 
-
-A vector field $\vec{F} : \mathbb{R}^n \rightarrow \mathbb{R}^m$ is a function that takes as input an $n$ dimensional vector and maps it to a $m$ dimensional vector:
-
-$$
-\vec{F}(x_1,\ldots,x_n) = 
-\begin{bmatrix}
-F_1(x_1,\ldots,x_n) \\
-\vdots \\
-F_m(x_1,\ldots,x_n)
-\end{bmatrix}
-$$
-
-The $i$th output of $\vec{F}(x_1,\ldots,x_n)$ is $F_i(x_1,…,x_n)$, where each $F_i : \mathbb{R}^n \rightarrow \mathbb{R}$ is a scalar field that depends on the $n$ inputs $x_1,\ldots,x_n$ and returns a scalar. In other words, a scalar field is a vector field whose output dimension $m=1$.
-
-For the rest of the text, we will use $\vec{F}$ to denote a vector field, and $f$ to denote a scalar field. 
-
+We will use $\vec{F}$ to denote a [vector field](Scalar%20Field%20and%20Vector%20Field.md), and $f$ to denote a [scalar field](Scalar%20Field%20and%20Vector%20Field.md).
 # Del / Nabla Operator
 >[!summary]
 >> $\nabla$, called *nabla* or *del*, is an operator that acts like a function that operates on scalar and vector fields, and is fundamental to vector calculus. 

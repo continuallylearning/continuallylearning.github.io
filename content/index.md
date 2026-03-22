@@ -17,17 +17,17 @@ There are a few ways to get started:
 # What are some good blogs to get started?
 Here are some fun ones based on topics:
 - For [Robotics](Robotics): 
-	- [Reflected Inertia](Robotics/Reflected%20Inertia.md)
-	- [Differentiable kinematics](Robotics/Differentiable%20kinematics.md)
+	- [Reflected Inertia](Reflected%20Inertia.md)
+	- [Differentiable kinematics](Differentiable%20kinematics.md)
 - For [Reinforcement-Learning](Reinforcement-Learning):
 	- [Reinforcement Learning 101](Reinforcement%20Learning%20101.md)
 	- [Advantage](Advantage.md)
 - For [Physics](Physics): 
-	- [Centripetal acceleration](Physics/Centripetal%20acceleration.md)
-	- [Continuity equation](Physics/Continuity%20equation.md)
+	- [Centripetal acceleration](Centripetal%20acceleration.md)
+	- [Continuity equation](Continuity%20equation.md)
 - For [Math](Math): 
-	- [Reparameterization trick](Reparameterization%20trick.md)
-	- [Ratios and Proportions](Math/Ratios%20and%20Proportions.md)
+	- [Old - Reparameterization trick](Old%20-%20Reparameterization%20trick.md)
+	- [Ratios and Proportions](Ratios%20and%20Proportions.md)
 - For [Programming](Programming):
 	- [LaTeX Math I often use](LaTeX%20Math%20I%20often%20use.md)
-	- [Multiple GitHub accounts](Programming/Multiple%20GitHub%20accounts.md)
+	- [Multiple GitHub accounts](Multiple%20GitHub%20accounts.md)

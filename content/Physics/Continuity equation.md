@@ -2,6 +2,8 @@
 title: Continuity equation
 feed: show
 date: 2025-09-20
+aliases:
+  - Flux
 ---
 The continuity equation describes a type of conservation law, specifically that a quantity can either be (locally) transported, generated, or destroyed. For the continuity equation to hold, a specific relationship between the density and flow of a quantity must be true, which we describe now:
 
@@ -13,21 +15,21 @@ $$
 
 To understand this equation, we will define all the terms and operators, in addition to defining their units/types to make it clear why the equation makes sense.
 
-- $\rho(x,t)$ is a scalar field representing the density of a quantity $q$ at a position $x$ at time $t$ .
+- $\rho(x,t)$ is a [scalar field](Scalar%20Field%20and%20Vector%20Field.md) representing the density of a quantity $q$ at a position $x$ at time $t$ .
 	- $x:R^d$ represents position in space. Say the units are meters $m$ .
 	- $t:R$ represents point in time. Say the units are seconds $s$ .
 	- $\rho:R^d \times R \rightarrow R$ represents density, which is the amount of quantity per unit volume. Say the units are $\frac{q}{m^3}$ .
 	- $\frac{\partial \rho}{\partial t}(x,t):R^d \times R \rightarrow R$ represents the derivative of density w.r.t time, or the rate of change of density (at a given point in space and time). Since the units of $\rho$ are $\frac{q}{m^3}$, and we're taking the derivative of it w.r.t time, then the units of $\frac{\partial \rho}{\partial t}$ is $\frac{\frac{q}{m^3}}{s}=\frac{q}{sm^3}$ (since derivative has units of the ratio between output and input variable types, see definition of derivative for more information.)
 	- Since $\frac{\partial \rho}{\partial t}$ has units $\frac{q}{sm^3}$ , and in the continuity equation we add it to $\nabla \cdot j$ , and we can only add things together that have the same units, we better make sure that $\nabla \cdot j$ has the same units. Let's check that out.
 - $j=\rho v$ is the flux density of $q$ , where flux density represents the total amount of $q$ per unit time ( $s$ ) per unit surface area. It is a vector field. Say the units are $\frac{q}{sm^2}$
-	- $j(x,t):R^d \times R \rightarrow R^d$ is a vector field that is a product of the density and flow of a quantity.
+	- $j(x,t):R^d \times R \rightarrow R^d$ is a [vector field](Scalar%20Field%20and%20Vector%20Field.md) that is a product of the density and flow of a quantity.
 	- $v(x,t):R^d \times R \rightarrow R^d$ is the flow (or velocity field), a vector field that represents the velocity of the quantity at some point in space ( $x$ ) and time ( $t$ ). Velocity is a ratio of change in position over change in time, so say the units are $\frac{m}{s}$
 	- Let's confirm the units of flux density ( $\frac{q}{sm^2}$ ) agrees with the units we get when we multiply the density of q $\rho$ with the flow $v$ . Since $\rho$ has units $\frac{q}{m^3}$ and $v$ has units $\frac{m}{s}$ then: 
 		$$
 		\rho v:(\frac{q}{m^3})(\frac{m}{s})=\frac{q}{sm^2}
 		$$
 	- It's acceptable to multiply $\rho$ and $v$ because $v$ is a vector and $\rho$ is a scalar, so the resulting flux density vector $j$ points in the same direction as the flow, but its magnitude is scaled by the density $\rho$ . Notice that both flux density and flow maps a spatial vector (size $d$ ) and a point in time (size $1$ ) to a vector with same shape as the spatial vector (size $d$ )
-- $\nabla \cdot$ is the divergence operator. It maps a vector field $f(x_1,...,x_n):R^d \rightarrow R^d=[y_1(x_1,..,x_n)...y_n(x_1,...,x_n)]$ to a scalar field $(\nabla \cdot f)(x_1,...x_n):R^d \rightarrow R$ via 
+- $\nabla \cdot$ is the [divergence](Gradient,%20Divergence,%20and%20Curl.md) operator. It maps a vector field $f(x_1,...,x_n):R^d \rightarrow R^d=[y_1(x_1,..,x_n)...y_n(x_1,...,x_n)]$ to a scalar field $(\nabla \cdot f)(x_1,...x_n):R^d \rightarrow R$ via 
 	$$
 	(\nabla \cdot f)(x_1,...x_n)=\sum_{i=1}^n \frac{\partial y_i}{\partial x_i}(x_1,...,x_n)
 	$$
