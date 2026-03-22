@@ -15,10 +15,11 @@ There are a few ways to get started:
 # What do the tags on each post mean?
 - `#clwip`: This post is an active work-in-progress. It is subject to change and may not be complete.
 # What are some good blogs to get started?
-Here are some fun ones based on topics:
+Here are some fun ones based on different topics:
 - For [Robotics](Robotics): 
 	- [Reflected Inertia](Reflected%20Inertia.md)
 	- [Differentiable kinematics](Differentiable%20kinematics.md)
+	- [Friction cone](Coulomb%20friction.md)
 - For [Reinforcement-Learning](Reinforcement-Learning):
 	- [Reinforcement Learning 101](Reinforcement%20Learning%20101.md)
 	- [Advantage](Advantage.md)
@@ -26,8 +27,8 @@ Here are some fun ones based on topics:
 	- [Centripetal acceleration](Centripetal%20acceleration.md)
 	- [Continuity equation](Continuity%20equation.md)
 - For [Math](Math): 
-	- [Old - Reparameterization trick](Old%20-%20Reparameterization%20trick.md)
-	- [Ratios and Proportions](Ratios%20and%20Proportions.md)
+	- [Gradient of random variables](Gradients%20of%20random%20variables.md) 
+	- [Gradient, Divergence, and Curl](Gradient,%20Divergence,%20and%20Curl.md)
 - For [Programming](Programming):
 	- [LaTeX Math I often use](LaTeX%20Math%20I%20often%20use.md)
 	- [Multiple GitHub accounts](Multiple%20GitHub%20accounts.md)
