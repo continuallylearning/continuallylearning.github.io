@@ -19,7 +19,7 @@ $$
 
 All three of these expressions are [Expected values](Expected%20value%20and%20variance.md) over the same two terms $F$ and $P$ (representing the integrand and probability distribution respectively), but the difference between these expressions is which of these terms depend on $\theta$.
 
-This note derives the gradients for each of these objectives, which we show now for clarity:
+This note derives the gradients for each of these objectives, with final forms shown below:
 
 $$
 \begin{align}
@@ -39,10 +39,11 @@ $$
 	- Calculating $\nabla_\theta L_2(\theta)$ is called the [policy gradients](RL4Robots%20-%20Policy%20Gradients.md) and lets us use gradient descent to iteratively update the policy parameters $\theta$ to maximize cumulative discounted expected rewards.
 - In $L_3$, both the probability $P$ and the integrand $\theta$ depend on $\theta$:
 	- Example: In maximum entropy reinforcement learning, in addition to maximizing returns $G(\tau)$, we also want to maximize the entropy of the policy, $H(\pi_\theta)$. So now both the probability distribution $P_\theta(\tau)$ and the integrand $F_\theta(\tau) = G(\tau) + H(\pi_\theta)$ depend on the policy parameters $\theta$. 
-	- Similar to the $L_2$ setting, calculating $\nabla_\theta L_3\theta)$ is the policy gradient for a "fancier" objective than the standard RL one, and lets us iteratively update policy parameters $\theta$. 
+	- Similar to the $L_2$ setting, calculating $\nabla_\theta L_3(\theta)$ is the policy gradient for a "fancier" objective than the standard RL one, and lets us iteratively update policy parameters $\theta$. 
 
 
 We will now address in turn how to calculate the gradients $\nabla_\theta L_1(\theta), \nabla_\theta L_2(\theta), \nabla_\theta L_3(\theta)$
+
 # 1) $\nabla_\theta L_1$: Integrand F depends on parameters
 
 $$
@@ -125,19 +126,22 @@ The reparameterization also rewrites $\nabla_\theta L_2$ as an expectation, but 
 
 Let's **assume** that the probability distribution $P_\theta(x)$ belongs to a simple parameterized family of probabiltiy distributions, like the family of gaussian: $P_\theta(x) = N(x|\mu_\theta, \sigma_\theta^2)$, meaning the parameters $\theta$ are the mean and standard deviation of $P_\theta$ and is a gaussian distribution.  
 
-Because we assumed $P_\theta(x)$ is a gaussian, we can introduce a deterministic function $G_\theta(x) = \frac{(x - \mu_\theta)}{\sigma_\theta}$, which has the following property:
+The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function $P(z)$, where $x=g(z)$, as long as account for volume expansion of the pdf due to $g$ (i.e., the determinent of the jacobian). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
+
 
 $$
 \begin{align}
-Pr(x) &= N(x|0,I) \\
-&= P_\theta(G_\theta(x))  \\
-&= N(x|\mu_\theta, \sigma_\theta^2)
+P_\theta(x) &= N(x  \mid \mu_\theta, \sigma_\theta^2) \\
+&= \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid} \\
+&= \frac{N(g_\theta^{-1}(x) \mid 0, 1)}{\mid \sigma_\theta \mid} \\
 \end{align}
 $$
 
-- [ ] prove the above
+where $g_\theta(x) = \sigma_\theta x + \mu_\theta$  
 
-In short, the probability of a sample $x \sim N(x|0,I)$ from the unit gaussian is equal to the same probability of the transformed sample $G_\theta(x) \sim P_\theta(x)$ from the original distribution. Because of this relationship, we can now rewrite $L_2$ in a different way that makes it easy to take the gradient: 
+What's important about this second way of writing $P_{\theta}(x) = \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid}$  is that the probability density function we are using no longer depends on $\theta$ (since the mean and std are 0 and 1 respectively. However, the value we evaluate at $z = g_\theta(x) = \frac{x - \mu_\theta}{\sigma_\theta}$ and how we transform it (by dividing by $\sigma_\theta$) now do depend on $\theta$, where we did not have that in the first way of writing it $N(x  \mid \mu_\theta, \sigma_\theta^2)$: we just plugged in $x$ and returned the pdf for gaussian parameterized by $\mu_\theta, \sigma_\theta$. 
+
+Because of this relationship, we can now rewrite $L_2$ using the probability density function that doesn't depend on the parameters $\theta$ to make it easy to take the gradient: 
 
 $$
 \begin{align}
@@ -148,7 +152,7 @@ L_2(\theta) &= \mathbb{E}_{x' \sim N(I,0)}[F(G_\theta(x'))] \\
 \end{align}
 $$
 
-By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likielihoods between the simple distribution and original distribution (see [change of variables for probability distributions](change%20of%20variables%20for%20probability%20distributions.md)).
+By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likielihoods between the simple distribution and original distribution (see [Change of Variables](Change%20of%20Variables.md)).
 
 ### Numerical calculation
 
@@ -203,7 +207,8 @@ $$
 \end{align}
 $$
 
-
+# Acknowledgements 
+I’d like to thank Zoheb Anjum for providing useful feedback on the note (fixing math and typos).
 
 # References
 - [Old - Reparameterization trick](Old%20-%20Reparameterization%20trick.md)
