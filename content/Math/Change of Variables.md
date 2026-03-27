@@ -3,6 +3,7 @@ tags:
   - "#clblogs"
 aliases:
   - Change of Variables for Probability Distributions
+  - change of variables
 ---
 # Summary
 Consider a random variable $x \in \mathbb{R}^n$ with a probability density function of $p_X(x)$. Let $g : \mathbb{R}^n \rightarrow \mathbb{R}^n$  be a function, and  $y=g(x)$. 
@@ -19,6 +20,7 @@ Where on the right side, we have the two terms:
 2. In the denominator, the absolute value of the determinant of the Jacobian of the map, evaluated at the pre image of the input.
 
 The intuition is that if $y=g(x)$, then it makes sense that the induced probability density of $y$ is related to the probability density of the corresponding random variable $x$, and these are equal for discrete distributions. However, for continuous random variables, we need to account for the fact that the function $g$ may be stretching the space, so that the probability density functions still integrate to 1 over their respective domains. The determinant of Jacobian $\det J_g$ represents how much the area is getting stretched by $g$ when going from $y = g(x)$. Since in the above equation, we're calculating $x = g^{-1}(y)$,  so we need to divide by the determinant of the jacobian of $g$ to correct for the volume expansion of $g$ (and therefore ensuring densities integrate to 1).
+
 # Example: Gaussians
 Consider:
 
@@ -65,7 +67,7 @@ p_Y(y)&= \frac{N(\frac{(y - \mu)}{\sigma} \mid 0, 1)}{\mid \sigma \mid} \\
 \end{align}
 $$
 
-The first approach first calculates $x = g^{-1}(y) = \frac{y - \mu}{\sigma}$, then gets the probability density value of that transformed value according to the original pdf $N(x|0,1)$, and then performs an additional correction (divide by $\mid \sigma \mid$). 
+The first approach first calculates $x = g^{-1}(y) = \frac{y - \mu}{\sigma}$, then gets the probability density value of that transformed value according to the original pdf $N(x|0,1)$, and then performs an additional correction (divide by $\mid \sigma \mid$).  This is used in the [reparameterization trick](Gradients%20of%20random%20variables.md).
 
 The second approach simply evaluates the probability density value of the input $y$ for a Gaussian parameterized by mean $\mu$ and standard deviation $\sigma$. 
 
@@ -73,3 +75,4 @@ As we have shown, these are equivalent ways of calculating the pdf.
 
 # References
 - https://www.cs.ubc.ca/~murphyk/Teaching/Stat406-Spring08/homework/changeOfVariablesHandout.pdf
+- https://tutorial.math.lamar.edu/classes/calciii/changeofvariables.aspx

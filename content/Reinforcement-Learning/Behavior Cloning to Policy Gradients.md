@@ -1,9 +1,10 @@
 ---
 tags:
   - clblogs
+  - clwip
 ---
 # Behavior cloning to score-based policy gradient
-This note makes the explicit connection between supervised learning (Specifically, behavior cloning) and score-based policy gradients.
+This note makes the explicit connection between supervised learning (i.e., behavior cloning) and reinforcement learning (i.e., score-based policy gradients.
 
 We start with defining behavior cloning, which assumes access to expert demonstrations, and calculate the gradient for maximizing its likelihood. Then, we introduce a dataset with bad demonstrations, which we try to (additionally) minimize likelihood on. Then, we introduce reward/advantage weighted regression, which replaces the explicit good/bad labels with returns / advantages. This then ends up looking like the standard score-based policy gradient.
 # Supervised learning - Behavior cloning with maximum log likelihood

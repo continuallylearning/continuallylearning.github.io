@@ -25,7 +25,7 @@ $$
 \begin{align}
 \nabla_\theta L_1(\theta)&= \mathbb{E}_{x \sim P}[\nabla_\theta F_\theta(x)] \\
 \nabla_\theta L_2(\theta)&= \mathbb{E}_{x \sim P_\theta(x)}[F(x) \nabla_\theta \log P_\theta(x)]  && \text{(REINFORCE)}\\
-&= \mathbb{E}_{x' \sim N(0,I)}[\nabla_\theta F(G_\theta(x'))] &&\text{(Reparameterization trick)}\\
+&= \mathbb{E}_{z \sim N(0,I)}[\nabla_\theta F(g_\theta(z))] &&\text{(Reparameterization trick)}\\
 \nabla_\theta L_3(\theta) &= \nabla_\theta L_1(\theta) + \nabla_\theta L_2(\theta)
 \end{align}
 $$
@@ -126,7 +126,7 @@ The reparameterization also rewrites $\nabla_\theta L_2$ as an expectation, but 
 
 Let's **assume** that the probability distribution $P_\theta(x)$ belongs to a simple parameterized family of probabiltiy distributions, like the family of gaussian: $P_\theta(x) = N(x|\mu_\theta, \sigma_\theta^2)$, meaning the parameters $\theta$ are the mean and standard deviation of $P_\theta$ and is a gaussian distribution.  
 
-The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function $P(z)$, where $x=g(z)$, as long as account for volume expansion of the pdf due to $g$ (i.e., the determinent of the jacobian). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
+The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function that doesn't depend on the parameters, $P_Z(z) = N(0,1)$ , where $x=g(z)$, as long as account for volume expansion of the pdf due to $g$ (i.e., the determinent of the jacobian). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
 
 
 $$
@@ -134,21 +134,34 @@ $$
 P_\theta(x) &= N(x  \mid \mu_\theta, \sigma_\theta^2) \\
 &= \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid} \\
 &= \frac{N(g_\theta^{-1}(x) \mid 0, 1)}{\mid \sigma_\theta \mid} \\
+&= \frac{N(z \mid 0, 1)}{\mid \sigma_\theta \mid} \\
+&= \frac{P_Z(z)}{\mid \sigma_\theta \mid} \\
 \end{align}
 $$
 
-where $g_\theta(x) = \sigma_\theta x + \mu_\theta$  
+where $g_\theta(z) = \sigma_\theta z + \mu_\theta$. 
 
-What's important about this second way of writing $P_{\theta}(x) = \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid}$  is that the probability density function we are using no longer depends on $\theta$ (since the mean and std are 0 and 1 respectively. However, the value we evaluate at $z = g_\theta(x) = \frac{x - \mu_\theta}{\sigma_\theta}$ and how we transform it (by dividing by $\sigma_\theta$) now do depend on $\theta$, where we did not have that in the first way of writing it $N(x  \mid \mu_\theta, \sigma_\theta^2)$: we just plugged in $x$ and returned the pdf for gaussian parameterized by $\mu_\theta, \sigma_\theta$. 
+What's important about this second way of writing $P_{\theta}(x) = \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid}$  is that the probability density function we are using no longer depends on $\theta$ (since the mean and std are 0 and 1 respectively. However, the value we evaluate at $z = g^{-1}_\theta(x) = \frac{x - \mu_\theta}{\sigma_\theta}$ and how we transform it (by dividing by $\sigma_\theta$) now do depend on $\theta$, where we did not have that in the first way of writing it $N(x  \mid \mu_\theta, \sigma_\theta^2)$: we just plugged in $x$ and returned the pdf for gaussian parameterized by $\mu_\theta, \sigma_\theta$. 
+
+Note that we can relate the infinisimal $dx$ and $dz$ through the Jacobian:
+
+$$
+\begin{align}
+\frac{dx}{dz} &= J_g \\
+dx &= \mid \det J_g \mid dz
+\end{align}
+$$
 
 Because of this relationship, we can now rewrite $L_2$ using the probability density function that doesn't depend on the parameters $\theta$ to make it easy to take the gradient: 
 
 $$
 \begin{align}
 L_2(\theta) &= \mathbb{E}_{x \sim P_{\theta}}[F(x)] \\
-&= \sum_{x}F(x)P_\theta(x) \\
-&= \sum_{x'}F(G_\theta(x'))N(x') \\
-L_2(\theta) &= \mathbb{E}_{x' \sim N(I,0)}[F(G_\theta(x'))] \\
+&= \int_X F(x)P_\theta(x)dx \\
+&= \int_Z F(g(z))  P_{\theta}(g(z)) \mid \det J_g \mid dz && \text{(Change variables)} \\
+&= \int_Z F(g(z)) \frac{N(z|0,1)}{\mid \det J_g \mid} \mid \det J_g \mid dz && \text{(Reparameterize pdf)}\\
+&= \int_Z F(g(z)) N(z|0,1)dz  && \text{(Cancel det J)}\\
+L_2(\theta) &= \mathbb{E}_{z \sim N(0,1)}[F(G_\theta(z))] \\
 \end{align}
 $$
 
@@ -160,9 +173,9 @@ We can now numerically estimate this gradient the same way we did for $\nabla_\t
 
 $$
 \begin{align}
-L_2(\theta) &= \mathbb{E}_{x' \sim N(I,0)}[F(G_\theta(x'))] \\
-\nabla_\theta L_2(\theta) &= \nabla_\theta \mathbb{E}_{x' \sim N(I,0)}[F(G_\theta(x'))] \\
-&= \mathbb{E}_{x' \sim N(I,0)}[\nabla_\theta F(G_\theta(x'))] \\
+L_2(\theta) &= \mathbb{E}_{x' \sim N(0,I)}[F(G_\theta(x'))] \\
+\nabla_\theta L_2(\theta) &= \nabla_\theta \mathbb{E}_{x' \sim N(0,I)}[F(G_\theta(x'))] \\
+&= \mathbb{E}_{x' \sim N(0,I)}[\nabla_\theta F(G_\theta(x'))] \\
 &\approx \frac{1}{n} \sum_{i=1}^n\nabla_\theta F(G_\theta(x_i')) \\
 \end{align}
 $$
@@ -211,9 +224,6 @@ $$
 I’d like to thank Zoheb Anjum for providing useful feedback on the note (fixing math and typos).
 
 # References
-- [Old - Reparameterization trick](Old%20-%20Reparameterization%20trick.md)
-	- my original post, I should probably just grab the computational graph and then delete it since this post now captures everything
 - [Gregory blog](https://gregorygundersen.com/blog/2018/04/29/reparameterization/)
 	- shows derivation for derivative of expected value with parameter in distribution by using product rule, which is awesome / best way to describe how you can just “calculate gradient for a probability distribution” 
-	- Id like to rewrite my blog using his starting point (both probability and argument for expected value), but make connection to REINFORCE (when argument doesn’t depend on parameters, just probability.)
 - [REINFORCE vs Reparameterization Trick](https://stillbreeze.github.io/REINFORCE-vs-Reparameterization-trick/)
