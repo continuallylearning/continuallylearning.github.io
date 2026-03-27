@@ -7,7 +7,7 @@ aliases:
 ---
 # Summary
 
-We will consider taking the gradients of three different expression w.r.t $\theta$:
+We will consider taking the gradients of three different expressions w.r.t $\theta$:
 
 $$
 \begin{align}
@@ -37,7 +37,7 @@ $$
 - In $L_2$, only the probability to the expected value $P$ depends on $\theta$.
 	- Example: In [Reinforcement Learning](Reinforcement%20Learning.md), the [Value function](Value%20function.md) for a policy $\pi_\theta$  in a given state $s$ is an expected value. The probability of a trajectory $P_\theta(\tau)$ depends on the policy parameters, and the integrand $G(\tau) = F$ is the cumulative discounted rewards of a trajectory and therefore does not depend on the policy parameters $\theta$.  
 	- Calculating $\nabla_\theta L_2(\theta)$ is called the [policy gradients](RL4Robots%20-%20Policy%20Gradients.md) and lets us use gradient descent to iteratively update the policy parameters $\theta$ to maximize cumulative discounted expected rewards.
-- In $L_3$, both the probability $P$ and the integrand $\theta$ depend on $\theta$:
+- In $L_3$, both the probability $P$ and the integrand $F_\theta$ depend on $\theta$:
 	- Example: In maximum entropy reinforcement learning, in addition to maximizing returns $G(\tau)$, we also want to maximize the entropy of the policy, $H(\pi_\theta)$. So now both the probability distribution $P_\theta(\tau)$ and the integrand $F_\theta(\tau) = G(\tau) + H(\pi_\theta)$ depend on the policy parameters $\theta$. 
 	- Similar to the $L_2$ setting, calculating $\nabla_\theta L_3(\theta)$ is the policy gradient for a "fancier" objective than the standard RL one, and lets us iteratively update policy parameters $\theta$. 
 
@@ -90,10 +90,10 @@ $$
 
 Because $F(x)$ isn't necessarily a probability distribution, we can't do the same step as we did in $\nabla_\theta L_1$ where we got an expectation immediately. If we can analytically calculate $\nabla_\theta P_\theta(x)$ and summation, then in theory we can calculate $\nabla_\theta L_2$ directly. 
 
-But if we can't calculate $\nabla_\theta P_\theta(x)$, then we have two options: The 
+But if we can't calculate $\nabla_\theta P_\theta(x)$, then we have two options:
 1. The *REINFORCE Estimator* uses the log-derivate trick on the derivation above to actually derive an expectation, which we can then estimate numerically using law of large numbers, just like in $\nabla_\theta L_1$.
-	1. We can ALWAYS do the REINFORCE estimator and get an unbiased estimated of the gradient $\nabla_\theta L_2$, but it can be high variance.
-2. The *Reparamaterization trick* rewrites $L_2 = \mathbb{E}_{x \sim P_{\theta}}[F(x)]$  into an equivalent expectation that only has the model parameters $\theta$ in the integrand (instead of in the probability distribution), which means we can just apply the same techniques we did for $L_1$. This is done by reparametrizing the probability distribution and the integrand. This isn't always possible (i.e., useful to use a simple parameterized probability distribution family for $P_\theta$), but when possible, can provide a low-variance estimator for the gradient.
+	1. We can ALWAYS do the REINFORCE estimator and get an unbiased estimate of the gradient $\nabla_\theta L_2$, but it can be high variance.
+2. The *Reparamaterization trick* rewrites $L_2 = \mathbb{E}_{x \sim P_{\theta}}[F(x)]$  into an equivalent expectation that only has the model parameters $\theta$ in the integrand (instead of in the probability distribution), which means we can just apply the same techniques we did for $L_1$. This is done by reparametrizing the probability distribution and the integrand. This isn't always possible (i.e., requires $P_\theta$ to belong to a simple reparameterizable family, like Gaussians), but when possible, can provide a low-variance estimator for the gradient.
 
 ## REINFORCE Estimator
 
@@ -124,9 +124,9 @@ $$
 
 The reparameterization also rewrites $\nabla_\theta L_2$ as an expectation, but rather than try to continue on from our original derivation, it reparametrizes the probability distribution and the integrand by making a new probability distribution that doesn't depend on the parameters $\theta$, and introduces them into the integrand by using a deterministic transformation from the simple distribution to the original one.
 
-Let's **assume** that the probability distribution $P_\theta(x)$ belongs to a simple parameterized family of probabiltiy distributions, like the family of gaussian: $P_\theta(x) = N(x|\mu_\theta, \sigma_\theta^2)$, meaning the parameters $\theta$ are the mean and standard deviation of $P_\theta$ and is a gaussian distribution.  
+Let's **assume** that the probability distribution $P_\theta(x)$ belongs to a simple parameterized family of probability distributions, like the family of gaussian: $P_\theta(x) = N(x|\mu_\theta, \sigma_\theta^2)$, meaning the parameters $\theta$ are the mean and standard deviation of $P_\theta$ and is a gaussian distribution.  
 
-The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function that doesn't depend on the parameters, $P_Z(z) = N(0,1)$ , where $x=g(z)$, as long as account for volume expansion of the pdf due to $g$ (i.e., the determinent of the jacobian). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
+The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function that doesn't depend on the parameters, $P_Z(z) = N(0,1)$ , where $x=g_\theta(z)$, as long as we account for volume expansion of the pdf due to $g$ (i.e., the determinant of the Jacobian). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
 
 
 $$
@@ -143,12 +143,12 @@ where $g_\theta(z) = \sigma_\theta z + \mu_\theta$.
 
 What's important about this second way of writing $P_{\theta}(x) = \frac{N(\frac{(x - \mu_\theta)}{\sigma_\theta} \mid 0, 1)}{\mid \sigma_\theta \mid}$  is that the probability density function we are using no longer depends on $\theta$ (since the mean and std are 0 and 1 respectively. However, the value we evaluate at $z = g^{-1}_\theta(x) = \frac{x - \mu_\theta}{\sigma_\theta}$ and how we transform it (by dividing by $\sigma_\theta$) now do depend on $\theta$, where we did not have that in the first way of writing it $N(x  \mid \mu_\theta, \sigma_\theta^2)$: we just plugged in $x$ and returned the pdf for gaussian parameterized by $\mu_\theta, \sigma_\theta$. 
 
-Note that we can relate the infinisimal $dx$ and $dz$ through the Jacobian:
+Note that we can relate the infinitesimal $dx$ and $dz$ through the Jacobian:
 
 $$
 \begin{align}
-\frac{dx}{dz} &= J_g \\
-dx &= \mid \det J_g \mid dz
+\frac{dx}{dz} &= J_{g_\theta} \\
+dx &= \mid \det J_{g_\theta} \mid dz
 \end{align}
 $$
 
@@ -158,14 +158,14 @@ $$
 \begin{align}
 L_2(\theta) &= \mathbb{E}_{x \sim P_{\theta}}[F(x)] \\
 &= \int_X F(x)P_\theta(x)dx \\
-&= \int_Z F(g(z))  P_{\theta}(g(z)) \mid \det J_g \mid dz && \text{(Change variables)} \\
-&= \int_Z F(g(z)) \frac{N(z|0,1)}{\mid \det J_g \mid} \mid \det J_g \mid dz && \text{(Reparameterize pdf)}\\
-&= \int_Z F(g(z)) N(z|0,1)dz  && \text{(Cancel det J)}\\
-L_2(\theta) &= \mathbb{E}_{z \sim N(0,1)}[F(G_\theta(z))] \\
+&= \int_Z F(g_\theta(z))  P_{\theta}(g_\theta(z)) \mid \det J_{g_\theta} \mid dz && \text{(Change variables)} \\
+&= \int_Z F(g_\theta(z)) \frac{N(z|0,1)}{\mid \det J_{g_\theta} \mid} \mid \det J_{g_\theta} \mid dz && \text{(Reparameterize pdf)}\\
+&= \int_Z F(g_\theta(z)) N(z|0,1)dz  && \text{(Cancel det J)}\\
+L_2(\theta) &= \mathbb{E}_{z \sim N(0,1)}[F(g_\theta(z))] \\
 \end{align}
 $$
 
-By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likielihoods between the simple distribution and original distribution (see [Change of Variables](Change%20of%20Variables.md)).
+By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likelihoods between the simple distribution and original distribution (see [Change of Variables](Change%20of%20Variables.md)).
 
 ### Numerical calculation
 
@@ -173,10 +173,10 @@ We can now numerically estimate this gradient the same way we did for $\nabla_\t
 
 $$
 \begin{align}
-L_2(\theta) &= \mathbb{E}_{x' \sim N(0,I)}[F(G_\theta(x'))] \\
-\nabla_\theta L_2(\theta) &= \nabla_\theta \mathbb{E}_{x' \sim N(0,I)}[F(G_\theta(x'))] \\
-&= \mathbb{E}_{x' \sim N(0,I)}[\nabla_\theta F(G_\theta(x'))] \\
-&\approx \frac{1}{n} \sum_{i=1}^n\nabla_\theta F(G_\theta(x_i')) \\
+L_2(\theta) &= \mathbb{E}_{z \sim N(0,I)}[F(g_\theta(z))] \\
+\nabla_\theta L_2(\theta) &= \nabla_\theta \mathbb{E}_{z \sim N(0,I)}[F(g_\theta(z))] \\
+&= \mathbb{E}_{z \sim N(0,I)}[\nabla_\theta F(g_\theta(z))] \\
+&\approx \frac{1}{n} \sum_{i=1}^n\nabla_\theta F(g_\theta(z_i)) \\
 \end{align}
 $$
 
@@ -215,7 +215,7 @@ $$
 \nabla_\theta L_3(\theta) &= \nabla_\theta L_1(\theta)  +  \nabla_\theta L_2(\theta) \\
 &\approx \frac{1}{n} \sum_{i=1}^{n} \nabla_\theta F_\theta(x_i)  +  \frac{1}{n} \sum_{i=1}^{n} F(x_i) \nabla_\theta \log P_\theta(x_i) && \text{(REINFORCE)}\\
 
-&\approx \frac{1}{n} \sum_{i=1}^{n} \nabla_\theta F_\theta(x_i) + \frac{1}{n} \sum_{i=1}^n\nabla_\theta F(G_\theta(x_i')) && \text{(Reparameterization trick)} \\
+&\approx \frac{1}{n} \sum_{i=1}^{n} \nabla_\theta F_\theta(x_i) + \frac{1}{n} \sum_{i=1}^n\nabla_\theta F(g_\theta(x_i')) && \text{(Reparameterization trick)} \\
 &\text{where } x_i \sim P_\theta, x'_i \sim N(0,I)
 \end{align}
 $$
