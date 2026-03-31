@@ -5,7 +5,7 @@ feed: show
 ---
 ## Overview
 
-We cover forward kinematics and the Jacobian, relating joint velocities to end-effector velocities with the Jacobian, and forces to torques via the Jacobian transpose.
+We cover forward kinematics and the [[Jacobian]], relating joint velocities to end-effector velocities with the Jacobian, and forces to torques via the Jacobian transpose.
 
 In this post:
 

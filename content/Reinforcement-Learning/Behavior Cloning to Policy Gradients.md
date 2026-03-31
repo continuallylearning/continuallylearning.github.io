@@ -153,7 +153,7 @@ L_k(\pi_\theta) &= \mathbb{E}_{s,a \sim D_k} [\Psi(s,a) \log \pi_\theta(a|s)] \\
 $$
 # References
 - original DDPG paper (connects DPPG to stochastic policy gradient)
-- [REPPO](RELATIVE%20ENTROPY%20PATHWISE%20POLICY.md)
+- [REPPO](Relative%20Entropy%20Pathwise%20Policy.md)
 	- Establishes pathwise policy gradient 
 - Proof that the optima policy to extract from a value function with entropy penalty is soft max. 
 - - [From policy gradient to actor-critic methods](https://rl-vs.github.io/rlvs2021/class-material/pg/13_rwr.pdf)
