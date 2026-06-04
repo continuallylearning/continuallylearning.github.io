@@ -17,7 +17,7 @@ If $n=3$, then we see that the sum of inner angles if $180(3-2) = 180$, which is
 
 First, consider a triangle described by the points $A,B,C$, with respective inner angles $\theta_1^\text{inner}, \theta_2^\text{inner}, \theta_3^\text{inner}$.  Note that these angles do not necessarily equal each other.
 
-![triangle_inner_angles](triangle_inner_angles.jpg)
+![triangle_inner_angles](media/triangle_inner_angles.jpg)
 
 We have also written out the outer angles, $\theta_1^\text{outer}, \theta_2^\text{outer}, \theta_3^\text{outer}$, by extending out the lines of the triangle. The outer and inner angles are supplementary, meaning each pair of inner/outer angles sums to $180$:
 
@@ -45,7 +45,7 @@ We can now substitute in our rearranged version of the definition of supplementa
 
 $$
 \begin{align}
-\sum_{i=1}^{n} \theta_{i}^\text{outer} &= 360 && \text{(Equation 2)}\\
+\sum_{i=1}^{n} \theta_{i}^\text{outer} &= 360 && \text{Outer angle constraint equation)}\\
 \sum_{i=1}^{n} (180-  \theta_{i}^\text{inner}) &= 360 && \text{(Substitution)}\\
 180n + \sum_{i=1}^{n} (- \theta_{i}^\text{inner}) &= 360 && \text{(Factor out 180)}\\
 \sum_{i=1}^{n}  \theta_{i}^\text{inner} &= -360 +180n && \text{(Rearrange)}\\

@@ -75,7 +75,7 @@ If we define $\alpha$ to be the angle between $\vec{F}$ and $\hat{n}$, then if $
 
 Consider the figure below (lifted from Modern Robotics, Chapter 12.2) showing the full friction cone in (a), and a projected view from one side in (b)
 
-![test](https://raw.githubusercontent.com/continuallylearning/continuallylearning.github.io/v4/media/friction_cone.png)
+![friction_cone](media/friction_cone.png)
 
 Any vector inside the friction cone is stable, and anything outside is not. We know that the vectors that are on the outer edge of the cone in (b) has vertical magnitude $F_z$ and horizontal component $\mu F_z$, and there is a right triangle formed between the two components. Therefore, since these legs are opposite and adjacent to the angle $\alpha$, we can use the definition of tan to derive the angle based on the coefficient of friction:
 
