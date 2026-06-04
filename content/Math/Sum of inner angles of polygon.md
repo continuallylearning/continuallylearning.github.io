@@ -59,4 +59,4 @@ You'll notice that our proof above did not rely on anything about the fact that 
 
 # Credit
 
-Thank you to [Michael Fishman][fishman.ai] for providing the proof and inspiration to write this note, [Zoheb Anjum](Zoheb%20Anjum.md) for additional clarity, and Thao Nguyen for reviewing/make suggestions to this note.
+Thank you to [Michael Fishman](fishman.ai) for providing the proof and inspiration to write this note, [Zoheb Anjum](Zoheb%20Anjum.md) for additional clarity, and [Thao Nguyen](https://thao-nguyen-ai.github.io/) for reviewing/make suggestions to this note.
