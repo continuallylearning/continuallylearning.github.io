@@ -8,7 +8,7 @@ aliases:
 ## Notation
 - $\vec{F}$ denotes a vector, where $F$ is the magnitude of vector $\vec{F}$.
 - $\hat{x}$ denotes a unit vector (i.e., a direction)
-- $\vec{F_x} = \vec{F} \cdot \hat{x}$ is a vector that denotes the part of $\vec{F}$ that points in the direction of $\hat{x}$. 
+- $\vec{F_x} = (\vec{F} \cdot \vec{x}) \hat{x}$ is a vector that denotes the part of $\vec{F}$ that points in the direction of $\hat{x}$. 
 
 ## Definition of Coulomb Friction
 
@@ -41,7 +41,7 @@ $$
 
 This new equation makes it clear that when applying a force $\vec{F}$, it will cause slippage when the tangential force from it is greater than the normal force from the applied force (multiplied by the coefficient of friction). 
 
-This implies if you apply a force to the surface and want the object to not slip, you must apply sufficient normal force to overcome whatever tangent force you’re also applying (multiplied by $\mu$). Interestingly, whether slipping will happen will be solely determined by the angle of applied force, and not it's magnitudes.
+This implies if you apply a force to the surface and want the object to not slip, you must apply sufficient normal force to overcome whatever tangent force you’re also applying (multiplied by $\mu$). Interestingly, whether slipping will happen will be solely determined by the angle of applied force, and not its magnitude.
 
 # Angle of applied force determines sliding, not magnitude
 
@@ -77,7 +77,7 @@ Consider the figure below (lifted from Modern Robotics, Chapter 12.2) showing th
 
 ![test](https://raw.githubusercontent.com/continuallylearning/continuallylearning.github.io/v4/media/friction_cone.png)
 
-Any vector inside the friction cone is stable, and anything outside is not. We know that the edge vector of the cone in (b) has vertical magnitude $F_z$ and horizontal component $\mu F_z$, and there is a right triangle formed between the two components. Therefore, since these legs are opposite and adjacent to the angle $\alpha$, we can use the definition of tan to derive the angle based on the coefficient of friction:
+Any vector inside the friction cone is stable, and anything outside is not. We know that the vectors that are on the outer edge of the cone in (b) has vertical magnitude $F_z$ and horizontal component $\mu F_z$, and there is a right triangle formed between the two components. Therefore, since these legs are opposite and adjacent to the angle $\alpha$, we can use the definition of tan to derive the angle based on the coefficient of friction:
 
 $$
 \begin{align}

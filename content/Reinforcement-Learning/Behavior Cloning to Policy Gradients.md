@@ -1,7 +1,11 @@
 ---
 tags:
   - clblogs
-  - clwip
+aliases:
+  - rwr
+  - awr
+  - advantage weighted regression
+  - reward weighted regression
 ---
 # Behavior cloning to score-based policy gradient
 This note makes the explicit connection between supervised learning (i.e., behavior cloning) and reinforcement learning (i.e., score-based policy gradients.
@@ -151,6 +155,9 @@ L_k(\pi_\theta) &= \mathbb{E}_{s,a \sim D_k} [\Psi(s,a) \log \pi_\theta(a|s)] \\
 \nabla_{\theta}L_k(\pi_\theta) &\approx  \frac{1}{n} \sum_{i=1}^{n} \Psi(s_i,a_i) \nabla_{\theta} \log \pi_\theta(a_i|s_i) \\
 \end{align}
 $$
+
+- [ ] TODO: scored based policy gradient. PPO
+- [ ] Relationship to [DAgger](DAgger.md)
 # References
 - original DDPG paper (connects DPPG to stochastic policy gradient)
 - [REPPO](Relative%20Entropy%20Pathwise%20Policy.md)

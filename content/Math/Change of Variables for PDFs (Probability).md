@@ -9,9 +9,6 @@ aliases:
   - cdf
   - cumulative distribution function
 ---
-# References
-- [libretexts]( https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/03%3A_Distributions/3.07%3A_Transformations_of_Random_Variables) writeup on change of variables is amazing. A lot of this is lifted from that but rewritten based on [Michael Fishman](Michael%20Fishman.md)'s more "direct" writing.
-
 # Summary
 Consider a random variable $X$ that takes on real values in $\mathbb{R}$, and let $f(x)$ be the probability density function (pdf) for the random variable $X$. Then we can define the cumulative distribution function (cdf) for the random variable as the integration of the pdf from $-\infty$ to $x$: 
 
@@ -166,6 +163,8 @@ The second approach simply evaluates the probability density value of the input 
 As we have shown, these are equivalent ways of calculating the pdf.
 
 # References
+- [libretexts]( https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/03%3A_Distributions/3.07%3A_Transformations_of_Random_Variables) writeup on change of variables is amazing. A lot of this is lifted from that but rewritten based on [Michael Fishman](Michael%20Fishman.md)'s more "direct" writing.
+- [more detailed proof for why determinent of jacobian appears](https://www.math.cuhk.edu.hk/course_builder/2021/math2020b/Chapter%202%20Change%20of%20Variables.pdf)
 - https://www.cs.ubc.ca/~murphyk/Teaching/Stat406-Spring08/homework/changeOfVariablesHandout.pdf
 - https://tutorial.math.lamar.edu/classes/calciii/changeofvariables.aspx
 - https://tutorial.math.lamar.edu/classes/calci/substitutionruleindefinite.aspx

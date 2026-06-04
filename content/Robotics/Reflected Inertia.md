@@ -2,6 +2,10 @@
 title: Reflected Inertia
 date: 2025-12-28
 feed: show
+aliases:
+  - gear ratio
+  - transmission system
+  - mechanical advantage
 ---
 ## Overview of a Transmission System
 

@@ -126,7 +126,7 @@ The reparameterization also rewrites $\nabla_\theta L_2$ as an expectation, but 
 
 Let's **assume** that the probability distribution $P_\theta(x)$ belongs to a simple parameterized family of probability distributions, like the family of gaussian: $P_\theta(x) = N(x|\mu_\theta, \sigma_\theta^2)$, meaning the parameters $\theta$ are the mean and standard deviation of $P_\theta$ and is a gaussian distribution.  
 
-The  [change of variables](Change%20of%20Variables.md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function that doesn't depend on the parameters, $P_Z(z) = N(0,1)$ , where $x=g_\theta(z)$, as long as we account for volume expansion of the pdf due to $g$ (i.e., the determinant of the [Jacobian](Jacobian.md)). For example, we know that (see [Example: Gaussians](Change%20of%20Variables.md#Example%20Gaussians) for derivation):
+The  [change of variables](Change%20of%20Variables%20for%20PDFs%20(Probability).md)  formula tells us that we can rewrite the probability density function $P_\theta(x)$  using a different probability density function that doesn't depend on the parameters, $P_Z(z) = N(0,1)$ , where $x=g_\theta(z)$, as long as we account for volume expansion of the pdf due to $g$ (i.e., the determinant of the [Jacobian](Jacobian.md)). For example, we know that (see [Example: Gaussians](Change%20of%20Variables%20for%20PDFs%20(Probability).md#Example%20Gaussians) for derivation):
 
 
 $$
@@ -165,7 +165,7 @@ L_2(\theta) &= \mathbb{E}_{z \sim N(0,1)}[F(g_\theta(z))] \\
 \end{align}
 $$
 
-By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likelihoods between the simple distribution and original distribution (see [Change of Variables](Change%20of%20Variables.md)).
+By reparameterizing the expectation to be using the random variable $x' \sim N(0,I)$, we moved the $\theta$ from the probability distribution into the integrand. We could use other simple distributions instead of a gaussian as long as we can sample from it and transform the likelihoods between the simple distribution and original distribution (see [Change of Variables for PDFs (Probability)](Change%20of%20Variables%20for%20PDFs%20(Probability).md)).
 
 ### Numerical calculation
 
@@ -221,7 +221,7 @@ $$
 $$
 
 # Acknowledgements 
-I’d like to thank Zoheb Anjum for providing useful feedback on the note (fixing math and typos).
+I’d like to thank [[Zoheb Anjum]] for providing useful feedback on the note (fixing math and typos).
 
 # References
 - [Gregory blog](https://gregorygundersen.com/blog/2018/04/29/reparameterization/)
